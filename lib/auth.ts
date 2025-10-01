@@ -5,6 +5,7 @@ import { nextCookies } from "better-auth/next-js";
 import { db } from "@/db";
 import { getBaseURL } from '@/lib/get-base-url';
 import * as schema from '@/db/schemas/auth';
+import { anonymous } from "better-auth/plugins";
 
 export const auth = betterAuth({
 	baseURL: getBaseURL(),
@@ -18,5 +19,5 @@ export const auth = betterAuth({
       generateId: () => nanoid(10),
     },
   },
-  plugins: [nextCookies()]
+  plugins: [anonymous(),nextCookies()]
 });
