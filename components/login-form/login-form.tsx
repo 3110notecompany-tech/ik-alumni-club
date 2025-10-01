@@ -1,13 +1,18 @@
+"use client"
+
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
 import coverImage from "./login-form-cover.jpg"
+import { authClient } from "@/lib/auth-client"
+import { useRouter } from "next/navigation"
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const router = useRouter();
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="overflow-hidden p-0">
@@ -20,7 +25,17 @@ export function LoginForm({
                   IK同窓会クラブにログイン
                 </p>
               </div>
-              <Button type="submit" className="w-full">
+              <Button onClick={(e) => {
+                e.preventDefault();
+                console.log("認証ベースURL:", authClient.$baseURL);
+                authClient.signIn.anonymous().then(() => {
+                  console.log("ログイン成功");
+                  router.push("/mypage");
+                }).catch((error) => {
+                  console.error("ログインエラー:", error);
+                });
+              }}
+              type="button" className="w-full">
                 ゲストでログイン
               </Button>
             </div>
