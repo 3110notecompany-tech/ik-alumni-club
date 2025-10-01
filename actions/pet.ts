@@ -1,5 +1,4 @@
 "use server";
-import { verifications } from "@/auth-schema";
 import { db } from "@/db";
 import { pets } from "@/db/schemas/pet";
 import { verifySession } from "@/lib/session";

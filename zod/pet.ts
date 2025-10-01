@@ -1,5 +1,5 @@
 import { pets, petType } from "@/db/schemas/pet";
-import { z } from "better-auth";
+import { z } from "zod";
 import { createInsertSchema } from "drizzle-zod";
 
 export const petFormSchema = createInsertSchema(pets, {
