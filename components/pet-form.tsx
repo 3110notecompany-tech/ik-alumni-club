@@ -23,16 +23,17 @@ import {
 } from "@/components/ui/select";
 import { useRouter } from "next/navigation";
 import { z } from "better-auth";
-import { createPet } from "@/actions/pet";
+import { createPet, updatePet } from "@/actions/pet";
 import { toast } from "sonner";
+import { Pet } from "@/types/pet";
 
 type PetFormData = z.infer<typeof petFormSchema>;
 
-export function PetForm() {
+export function PetForm({ defaultValues }: { defaultValues?: Pet }) {
   const router = useRouter();
   const form = useForm<PetFormData>({
     resolver: zodResolver(petFormSchema),
-    defaultValues: {
+    defaultValues: defaultValues ?? {
       name: "",
       type: "dog",
       hp: 50,
@@ -41,15 +42,19 @@ export function PetForm() {
 
   async function onSubmit(data: PetFormData) {
     try {
-      await createPet(data);
-      toast("ペットが作成されました", {
-        description: `${data.name}を登録しました`,
+      if (defaultValues) {
+        await updatePet(defaultValues.id, data);
+      } else {
+        await createPet(data);
+      }
+      toast(`ペットが${defaultValues ? "更新" : "作成"}されました`, {
+        description: `${data.name}を${defaultValues ? "更新" : "追加"}しました`,
       });
       form.reset();
       router.refresh();
     } catch (error) {
       toast.error("エラーが発生しました", {
-        description: "ペットの作成に失敗しました",
+        description: `ペットの${defaultValues ? "更新" : "作成"}に失敗しました`,
       });
       console.error(error);
     }
@@ -69,9 +74,7 @@ export function PetForm() {
               <FormControl>
                 <Input placeholder="例；ぽち" {...field} />
               </FormControl>
-              <FormDescription>
-                ペットの名前を入力してください
-              </FormDescription>
+              <FormDescription>ペットの名前を入力してください</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -83,10 +86,7 @@ export function PetForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel>種類</FormLabel>
-              <Select
-                onValueChange={field.onChange}
-                defaultValue={field.value}
-              >
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="ペットの種類を選択" />
@@ -97,9 +97,7 @@ export function PetForm() {
                   <SelectItem value="cat">猫</SelectItem>
                 </SelectContent>
               </Select>
-              <FormDescription>
-                ペットの種類を選択してください
-              </FormDescription>
+              <FormDescription>ペットの種類を選択してください</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -130,7 +128,7 @@ export function PetForm() {
         />
 
         <Button type="submit" disabled={isSubmitting}>
-          登録
+          {defaultValues ? "ペットを更新" : "ペットを追加"}
         </Button>
       </form>
     </Form>

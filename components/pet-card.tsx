@@ -41,7 +41,7 @@ export function PetCard({ pet }: { pet: Pet }) {
       </CardContent>
       <CardFooter>
         <Button asChild>
-          <Link href={`/pet/${pet.id}`}>編集</Link>
+          <Link href={`/pets/${pet.id}`}>編集</Link>
         </Button>
       </CardFooter>
     </Card>
