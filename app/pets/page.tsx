@@ -1,5 +1,5 @@
 import { PetCard } from "@/components/pet-card";
-import { getPets } from "@/date/pet";
+import { getPets } from "@/data/pet";
 import { Pet } from "@/types/pet";
 
 export default async function PetsPage() {

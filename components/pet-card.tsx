@@ -1,6 +1,8 @@
 import { Pet, PetType } from "@/types/pet";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { Button } from "./ui/button";
+import Link from "next/link.js";
 
 const getPetTypeLabel = (type: PetType) => {
   const typeMap: Record<PetType, string> = {
@@ -30,11 +32,18 @@ export function PetCard({ pet }: { pet: Pet }) {
         <div className="mt-4 space-y-2">
           <div className="flex justify-between items-center">
             <span className="text-sm font-medium">HP</span>
-            <span className="text-sm font-medium">{hpStatus.label} ({pet.hp}/100)</span>
+            <span className="text-sm font-medium">
+              {hpStatus.label} ({pet.hp}/100)
+            </span>
           </div>
-          <Progress value={pet.hp} className="h-2" />
+          <Progress role="progressbar" value={pet.hp} className="h-2" />
         </div>
       </CardContent>
+      <CardFooter>
+        <Button asChild>
+          <Link href={`/pet/${pet.id}`}>編集</Link>
+        </Button>
+      </CardFooter>
     </Card>
   );
 }
