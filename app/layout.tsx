@@ -73,7 +73,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${senobiGothic.variable} ${academy.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${senobiGothic.variable} ${academy.variable} font-sans antialiased`}
       >
         <NuqsAdapter>
           <Header />
