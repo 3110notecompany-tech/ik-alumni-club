@@ -12,19 +12,19 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 
 export function Header() {
   const router = useRouter();
-  const { data: session } = authClient.useSession();
 
-  const handleLogout = async () => {
-    await authClient.signOut();
-    router.push("/");
-    router.refresh();
-  };
+  // ユーザー登録機能実装時に使用
+  // const { data: session } = authClient.useSession();
+
+  // const handleLogout = async () => {
+  //   await authClient.signOut();
+  //   router.push("/");
+  //   router.refresh();
+  // };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -38,6 +38,29 @@ export function Header() {
           placeholder="blur"
           className="dark:brightness-[0.2] dark:grayscale"
         />
+        <div className="header-text">TEXT</div>
+        {/* マイページボタンとログアウト//ユーザー登録機能実装時に使用 */}
+        {/* <div className="flex items-center gap-2">
+          {session?.user && (
+            <>
+              <Link href="/mypage" className="hidden md:block">
+                <Button variant="ghost" size="icon">
+                  <User className="h-5 w-5" />
+                  <span className="sr-only">マイページ</span>
+                </Button>
+              </Link>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={handleLogout}
+                className="hidden md:block"
+              >
+                <LogOut className="h-5 w-5" />
+                <span className="sr-only">ログアウト</span>
+              </Button>
+            </>
+          )}
+        </div> */}
       </div>
     </header>
   );

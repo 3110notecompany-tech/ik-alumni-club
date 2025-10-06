@@ -3,12 +3,20 @@ import { PetSearchForm } from "@/components/pet-search-form";
 import { getPets, searchPets } from "@/data/pet";
 import { Pet } from "@/types/pet";
 import { createLoader, parseAsString } from "nuqs";
+import { setLocale } from "@/app/web/i18n/set-locale";
 
 export const loadSearchParams = createLoader({
   name: parseAsString.withDefault(""),
 });
 
-export default async function PetsPage({ searchParams }: PageProps<"/pets">) {
+export default async function PetsPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  await setLocale(params);
   const { name } = await loadSearchParams(searchParams);
   const pets = name ? await searchPets(name) : await getPets();
 
