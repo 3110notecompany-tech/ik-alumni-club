@@ -1,7 +1,7 @@
 import { db } from "@/db";
 import { pets } from "@/db/schemas/pet";
 import { verifySession } from "@/lib/session";
-import { and, eq } from "drizzle-orm";
+import { and, eq, ilike } from "drizzle-orm";
 import "server-only";
 
 export const getPets = async () => {
@@ -10,6 +10,12 @@ export const getPets = async () => {
         //     columns: { id: true, name: true, },
         // }
     );
+}
+
+export const searchPets = async (name: string) => {
+    return db.query.pets.findMany({
+        where: ilike(pets.name, `%${name}%`),
+    });
 }
 
 export const getPet = async (id: string) => {
