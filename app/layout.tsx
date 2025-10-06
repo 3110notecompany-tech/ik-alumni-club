@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { getBaseURL } from "@/lib/get-base-url";
@@ -14,6 +15,45 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const senobiGothic = localFont({
+  src: [
+    {
+      path: "./fonts/Senobi-Gothic-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Senobi-Gothic-Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Senobi-Gothic-Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-senobi-gothic",
+  display: "swap",
+});
+
+const academy = localFont({
+  src: [
+    {
+      path: "./fonts/Academy.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/AcademyFilled3D.ttf",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+  variable: "--font-academy",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -33,7 +73,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${senobiGothic.variable} ${academy.variable} antialiased`}
       >
         <NuqsAdapter>
           <Header />
