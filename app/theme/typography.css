@@ -1,6 +1,6 @@
 @layer components {
   .header-text {
-    font-size: 20px;
+    font-size: 16px;
     font-family: var(--font-academy);
   }
 }

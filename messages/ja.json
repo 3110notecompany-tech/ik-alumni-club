@@ -4,5 +4,16 @@
   },
   "HomePage": {
     "title": "こんにちは"
+  },
+  "Header": {
+    "home": "HOME",
+    "information": "INFORMATION",
+    "schedule": "SCHEDULE",
+    "video": "VIDEO",
+    "blog": "BLOG",
+    "newsletters": "NEWSLETTERS",
+    "contact": "CONTACT",
+    "joinUs": "入会はこちら",
+    "login": "ログイン"
   }
 }
