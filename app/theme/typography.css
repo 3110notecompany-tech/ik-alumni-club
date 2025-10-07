@@ -3,4 +3,18 @@
     font-size: 16px;
     font-family: var(--font-academy);
   }
+  .main-text {
+    font-size: 40px;
+    font-family: var(--font-academy);
+  }
+  .view-all-text {
+    font-size: 16px;
+    font-family: var(--font-academy);
+  }
+  .date-text {
+    font-size: 10px;
+  }
+  .contents-title {
+    font-size: 14px;
+  }
 }
