@@ -1,6 +1,6 @@
 import { formatDate } from "@/lib/utils";
 
-export function ContentsHeader({
+export function ContentsCard({
   title,
   date,
 }: {
