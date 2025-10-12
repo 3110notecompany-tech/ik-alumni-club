@@ -1,4 +1,3 @@
-import { formatDate } from "@/lib/utils";
 import { ContentsHeader } from "./contents-header";
 import { ContentsCard } from "./contents-card";
 
