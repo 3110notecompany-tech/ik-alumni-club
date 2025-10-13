@@ -21,5 +21,18 @@
     "blog": "BLOG",
     "newsletters": "NEWSLETTERS",
     "click_here_for_details" : "詳細はこちら"
+  },
+  "Footer": {
+    "about": "アバウト",
+    "aboutUs": "私たちについて",
+    "mission": "ミッション",
+    "team": "チーム",
+    "resources": "リソース",
+    "blog": "ブログ",
+    "newsletters": "ニュースレター",
+    "contact": "お問い合わせ",
+    "allRightsReserved": "All rights reserved.",
+    "privacyPolicy": "プライバシーポリシー",
+    "termsOfService": "利用規約"
   }
 }

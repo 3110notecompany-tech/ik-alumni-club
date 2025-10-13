@@ -20,6 +20,19 @@
     "information": "INFORMATION",
     "blog": "BLOG",
     "newsletters": "NEWSLETTERS",
-    "click_here_for_details" : "Click here for details" 
+    "click_here_for_details" : "Click here for details"
+  },
+  "Footer": {
+    "about": "About",
+    "aboutUs": "About Us",
+    "mission": "Mission",
+    "team": "Team",
+    "resources": "Resources",
+    "blog": "Blog",
+    "newsletters": "Newsletters",
+    "contact": "Contact",
+    "allRightsReserved": "All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
   }
 }
