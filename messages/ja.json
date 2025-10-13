@@ -15,5 +15,11 @@
     "contact": "CONTACT",
     "joinUs": "入会はこちら",
     "login": "ログイン"
+  },
+  "Contents": {
+    "information": "INFORMATION",
+    "blog": "BLOG",
+    "newsletters": "NEWSLETTERS",
+    "click_here_for_details" : "詳細はこちら"
   }
 }

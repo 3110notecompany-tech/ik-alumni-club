@@ -17,4 +17,26 @@
   .contents-title {
     font-size: 14px;
   }
+  .month-card-text {
+    font-size: 24px;
+    color: white;
+  }
+  .month-card-text {
+    font-size: 24px;
+    color: white;
+  }
+  .day-card-text {
+    font-size: 32px;
+    color: white;
+  }
+  .week-card-text {
+    font-size: 12px;
+    color: white;
+  }
+  .calendar-card-title {
+    font-size: 16px;
+  }
+  .link-title {
+    font-size: 14px;
+  }
 }
