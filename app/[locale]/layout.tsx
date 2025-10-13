@@ -10,6 +10,7 @@ import { routing } from "@/app/web/i18n/routing";
 import { setLocale } from "@/app/web/i18n/set-locale";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
+import { Footer } from "@/components/footer/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -92,6 +93,7 @@ export default async function RootLayout({
           <NuqsAdapter>
             <Header />
             {children}
+            <Footer />
             <Toaster />
           </NuqsAdapter>
         </NextIntlClientProvider>
