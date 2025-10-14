@@ -8,5 +8,5 @@ export const getBaseURL = (options?: { useCommitURL?: boolean }) => {
 
   return url
     ? `https://${url}`
-    : `http://localhost:${process.env.PORT || 3000}`;
+    : `http://localhost:${process.env.PORT || 3001}`;
 };

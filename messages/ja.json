@@ -1,0 +1,39 @@
+{
+  "LocaleSwitcher": {
+    "locale": "{locale, select, ja {日本語} en {英語} other {不明}}"
+  },
+  "HomePage": {
+    "title": "こんにちは"
+  },
+  "Header": {
+    "home": "HOME",
+    "information": "INFORMATION",
+    "schedule": "SCHEDULE",
+    "video": "VIDEO",
+    "blog": "BLOG",
+    "newsletters": "NEWSLETTERS",
+    "contact": "CONTACT",
+    "joinUs": "入会はこちら",
+    "login": "ログイン"
+  },
+  "Contents": {
+    "information": "INFORMATION",
+    "blog": "BLOG",
+    "newsletters": "NEWSLETTERS",
+    "video": "VIDEO",
+    "click_here_for_details" : "詳細はこちら"
+  },
+  "Footer": {
+    "about": "アバウト",
+    "aboutUs": "私たちについて",
+    "mission": "ミッション",
+    "team": "チーム",
+    "resources": "リソース",
+    "blog": "ブログ",
+    "newsletters": "ニュースレター",
+    "contact": "お問い合わせ",
+    "allRightsReserved": "All rights reserved.",
+    "privacyPolicy": "プライバシーポリシー",
+    "termsOfService": "利用規約"
+  }
+}

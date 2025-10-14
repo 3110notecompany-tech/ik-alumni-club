@@ -1,0 +1,39 @@
+{
+  "LocaleSwitcher": {
+    "locale": "{locale, select, ja {Japanese} en {English} other {Unknown}}"
+  },
+  "HomePage": {
+    "title": "Hello world!"
+  },
+  "Header": {
+    "home": "HOME",
+    "information": "INFORMATION",
+    "schedule": "SCHEDULE",
+    "video": "VIDEO",
+    "blog": "BLOG",
+    "newsletters": "NEWSLETTERS",
+    "contact": "CONTACT",
+    "joinUs": "Join Us",
+    "login": "Login"
+  },
+  "Contents": {
+    "information": "INFORMATION",
+    "blog": "BLOG",
+    "newsletters": "NEWSLETTERS",
+    "video": "VIDEO",
+    "click_here_for_details" : "Click here for details"
+  },
+  "Footer": {
+    "about": "About",
+    "aboutUs": "About Us",
+    "mission": "Mission",
+    "team": "Team",
+    "resources": "Resources",
+    "blog": "Blog",
+    "newsletters": "Newsletters",
+    "contact": "Contact",
+    "allRightsReserved": "All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
+  }
+}

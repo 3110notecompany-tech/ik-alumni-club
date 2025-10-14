@@ -2,5 +2,8 @@
   "cSpell.words": [
     "supabase",
     "turbopack"
+  ],
+  "i18n-ally.localesPaths": [
+    "messages"
   ]
 }
