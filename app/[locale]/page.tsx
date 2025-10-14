@@ -7,6 +7,7 @@ import { NewsLettersContents } from "@/components/newsletters/content";
 import { ScheduleContents } from "@/components/shedule/content";
 import Image from "next/image";
 import heroBg from "./hero-bg.jpg";
+import { VideoContents } from "@/components/video/content";
 
 export default async function Home({
   params,
@@ -34,7 +35,9 @@ export default async function Home({
         <div className="mb-32">
           <ScheduleContents />
         </div>
-
+        <div className="mb-32">
+          <VideoContents />
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-15 mb-32">
           <BlogContents />
           <NewsLettersContents />
