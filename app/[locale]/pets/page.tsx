@@ -1,11 +1,10 @@
 import { PetCard } from "@/components/pet-card";
 import { PetSearchForm } from "@/components/pet-search-form";
 import { getPets, searchPets } from "@/data/pet";
-import { Pet } from "@/types/pet";
-import { createLoader, parseAsString } from "nuqs";
+import { createSearchParamsCache, parseAsString } from "nuqs/server";
 import { setLocale } from "@/app/web/i18n/set-locale";
 
-export const loadSearchParams = createLoader({
+export const searchParamsCache = createSearchParamsCache({
   name: parseAsString.withDefault(""),
 });
 
@@ -17,7 +16,7 @@ export default async function PetsPage({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   await setLocale(params);
-  const { name } = await loadSearchParams(searchParams);
+  const { name } = searchParamsCache.parse(await searchParams);
   const pets = name ? await searchPets(name) : await getPets();
 
   return (

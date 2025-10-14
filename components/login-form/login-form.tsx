@@ -27,7 +27,6 @@ export function LoginForm({
               </div>
               <Button onClick={(e) => {
                 e.preventDefault();
-                console.log("認証ベースURL:", authClient.$baseURL);
                 authClient.signIn.anonymous().then(() => {
                   console.log("ログイン成功");
                   router.push("/mypage");

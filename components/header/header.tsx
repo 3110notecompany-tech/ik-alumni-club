@@ -10,19 +10,9 @@ import youtubeBlack from "../sns-icon/youtube-black.png";
 import tiktokBlack from "../sns-icon/tiktok-black.png";
 
 import { Button } from "@/components/ui/button";
-import { Menu, User, LogOut, Dog } from "lucide-react";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
-import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 export function Header() {
-  const router = useRouter();
   const t = useTranslations("Header");
 
   // ユーザー登録機能実装時に使用
