@@ -3,7 +3,7 @@ import { getSessionCookie } from "better-auth/cookies";
 import createIntlMiddleware from "next-intl/middleware";
 import { routing } from "./app/web/i18n/routing";
 
-const publicRoutes = ["/login", "/register", "/", "/information"];
+const publicRoutes = ["/login", "/signup", "/", "/information"];
 
 const intlMiddleware = createIntlMiddleware(routing);
 

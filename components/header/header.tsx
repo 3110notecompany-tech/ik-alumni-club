@@ -52,8 +52,12 @@ export function Header() {
             <Image src={tiktokBlack} alt="" height={24} />
           </div>
           <div className="flex gap-6 h-[70px] items-center justify-end">
-            <Button className="rounded-[50px] bg-brand">{t("joinUs")}</Button>
-            <Button variant="outline" className="rounded-[50px] border-brand">{t("login")}</Button>
+            <Link href="/signup">
+              <Button className="rounded-[50px] bg-brand">{t("joinUs")}</Button>
+            </Link>
+            <Link href="/login">
+              <Button variant="outline" className="rounded-[50px] border-brand">{t("login")}</Button>
+            </Link>
           </div>
         </div>
         {/* マイページボタンとログアウト//ユーザー登録機能実装時に使用 */}
