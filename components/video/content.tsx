@@ -5,8 +5,11 @@ import { VideoCard } from "./card";
 import { Carousel } from "./carousel";
 import { CarouselIndicator } from "./carousel-indicator";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 export function VideoContents() {
+  const t = useTranslations("Contents");
+
   const items = [
     {
       videoUrl: "https://www.youtube.com/watch?v=FYFUKvqxgWk",
@@ -30,7 +33,7 @@ export function VideoContents() {
 
   return (
     <div className="flex flex-col">
-      <ContentsHeader title="VIDEO" />
+      <ContentsHeader title={t("video")} />
       <Carousel onPrevious={handlePrevious} onNext={handleNext}>
         <VideoCard
           videoUrl={items[currentIndex].videoUrl}
