@@ -14,7 +14,9 @@
     "newsletters": "NEWSLETTERS",
     "contact": "CONTACT",
     "joinUs": "Join Us",
-    "login": "Login"
+    "login": "Login",
+    "mypage": "My Page",
+    "logout": "Logout"
   },
   "Contents": {
     "information": "INFORMATION",
