@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Separator } from "@/components/ui/separator"
-import Image from "next/image"
-import coverImage from "./login-form-cover.jpg"
-import { authClient } from "@/lib/auth-client"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
-import Link from "next/link"
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import Image from "next/image";
+import coverImage from "./login-form-cover.jpg";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import Link from "next/link";
 
 export function LoginForm({
   className,
@@ -44,22 +44,6 @@ export function LoginForm({
     }
   };
 
-  const handleGuestLogin = async () => {
-    setError("");
-    setIsLoading(true);
-
-    try {
-      await authClient.signIn.anonymous();
-      console.log("ゲストログイン成功");
-      router.push("/mypage");
-    } catch (error) {
-      console.error("ゲストログインエラー:", error);
-      setError("ゲストログインに失敗しました");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="overflow-hidden p-0">
@@ -73,9 +57,7 @@ export function LoginForm({
                 </p>
               </div>
               {error && (
-                <div className="text-red-500 text-sm text-center">
-                  {error}
-                </div>
+                <div className="text-red-500 text-sm text-center">{error}</div>
               )}
               <div className="grid gap-2">
                 <Label htmlFor="email">メールアドレス</Label>
@@ -109,16 +91,6 @@ export function LoginForm({
                   登録
                 </Link>
               </div>
-              <Separator />
-              <Button
-                type="button"
-                variant="outline"
-                className="w-full"
-                onClick={handleGuestLogin}
-                disabled={isLoading}
-              >
-                ゲストでログイン
-              </Button>
             </div>
           </form>
           <div className="bg-muted relative hidden md:block">
@@ -132,5 +104,5 @@ export function LoginForm({
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }
