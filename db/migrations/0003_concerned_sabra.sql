@@ -1,1 +1,1 @@
-ALTER TABLE "users" DROP COLUMN "is_anonymous";
+ALTER TABLE "users" DROP COLUMN IF EXISTS "is_anonymous";
