@@ -15,6 +15,11 @@ jobs:
         run: |
           npm install -g pnpm
           pnpm install
+      - name: Fix migration history
+        run: pnpm drizzle:fix-history
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        continue-on-error: true
       - name: Apply migrations
         run: pnpm drizzle:migrate
         env:
