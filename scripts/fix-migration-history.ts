@@ -28,7 +28,8 @@ const completedMigrations = [
 ];
 
 async function fixMigrationHistory() {
-  const sql = postgres(DATABASE_URL);
+  // TypeScriptの型チェックのために、DATABASE_URLが存在することを保証
+  const sql = postgres(DATABASE_URL as string);
 
   try {
     console.log('🔍 データベースに接続中...');

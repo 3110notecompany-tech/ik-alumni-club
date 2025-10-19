@@ -23,7 +23,7 @@ export const Default: Story = {
   },
 };
 
-export const 長い名前: Story = {
+export const LongName: Story = {
   args: {
     pet: {
       id: "",
@@ -35,7 +35,7 @@ export const 長い名前: Story = {
   },
 };
 
-export const HPゼロ: Story = {
+export const HpZero: Story = {
   args: {
     pet: {
       id: "",
@@ -47,7 +47,7 @@ export const HPゼロ: Story = {
   },
 };
 
-export const HP100: Story = {
+export const HpOneHundred: Story = {
   args: {
     pet: {
       id: "",
