@@ -1,13 +1,16 @@
 import { Contents } from "@/components/contents/content";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
+import { getInformations } from "@/data/information";
 
-export function InformationContents() {
-  const t = useTranslations("Contents");
+export async function InformationContents() {
+  const t = await getTranslations("Contents");
+  const informations = await getInformations();
 
-  return (
-    <Contents
-      title={t("information")}
-      items={[{ title: "次回のイベント案内", date: "2025/10/15" }]}
-    />
-  );
+  // 最新3件のお知らせを取得
+  const items = informations.slice(0, 3).map((info) => ({
+    title: info.title,
+    date: info.date,
+  }));
+
+  return <Contents title={t("information")} items={items} />;
 }
