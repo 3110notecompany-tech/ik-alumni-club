@@ -9,9 +9,6 @@ const adminRoutes = ["/admin/login"]; // 管理者ログインページは認証
 const intlMiddleware = createIntlMiddleware(routing);
 
 export async function middleware(request: NextRequest) {
-	// 国際化ミドルウェアを先に実行
-	const intlResponse = intlMiddleware(request);
-
 	// セッションチェック
 	const sessionCookie = getSessionCookie(request);
 	const pathname = request.nextUrl.pathname;
@@ -38,7 +35,11 @@ export async function middleware(request: NextRequest) {
 		return NextResponse.redirect(new URL("/login", request.url));
 	}
 
-	return intlResponse;
+	// 国際化ミドルウェアを実行し、pathnameをヘッダーに追加
+	const response = intlMiddleware(request);
+	response.headers.set("x-pathname", pathnameWithoutLocale);
+
+	return response;
 }
 
 export const config = {
