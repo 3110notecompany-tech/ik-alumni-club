@@ -11,6 +11,7 @@ import { setLocale } from "@/app/web/i18n/set-locale";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { Footer } from "@/components/footer/footer";
+import { headers } from "next/headers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -83,6 +84,9 @@ export default async function RootLayout({
 }>) {
   const locale = await setLocale(params);
   const messages = await getMessages();
+  const headersList = await headers();
+  const pathname = headersList.get("x-pathname") || "";
+  const isAdminPage = pathname.includes("/admin");
 
   return (
     <html lang={locale}>
@@ -91,9 +95,9 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider messages={messages}>
           <NuqsAdapter>
-            <Header />
+            {!isAdminPage && <Header />}
             {children}
-            <Footer />
+            {!isAdminPage && <Footer />}
             <Toaster />
           </NuqsAdapter>
         </NextIntlClientProvider>

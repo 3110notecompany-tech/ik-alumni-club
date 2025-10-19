@@ -8,6 +8,20 @@
       "when": 1759320825607,
       "tag": "0000_calm_rockslide",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1760700599017,
+      "tag": "0001_mute_dragon_lord",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1760869494154,
+      "tag": "0002_parched_ted_forrester",
+      "breakpoints": true
     }
   ]
 }

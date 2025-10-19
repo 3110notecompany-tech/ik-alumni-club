@@ -1,6 +1,4 @@
 import { setLocale } from "@/app/web/i18n/set-locale";
-import { getTranslations } from "next-intl/server";
-import { Contents } from "@/components/contents/content";
 import { InformationContents } from "@/components/information/content";
 import { BlogContents } from "@/components/blog/content";
 import { NewsLettersContents } from "@/components/newsletters/content";
@@ -15,7 +13,6 @@ export default async function Home({
   params: Promise<{ locale: string }>;
 }) {
   await setLocale(params);
-  const t = await getTranslations("HomePage");
 
   return (
     <div className="font-sans max-w-full">

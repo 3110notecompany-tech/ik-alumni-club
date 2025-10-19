@@ -14,7 +14,9 @@
     "newsletters": "NEWSLETTERS",
     "contact": "CONTACT",
     "joinUs": "入会はこちら",
-    "login": "ログイン"
+    "login": "ログイン",
+    "mypage": "マイページ",
+    "logout": "ログアウト"
   },
   "Contents": {
     "information": "INFORMATION",

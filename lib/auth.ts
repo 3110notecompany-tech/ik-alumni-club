@@ -19,5 +19,8 @@ export const auth = betterAuth({
       generateId: () => nanoid(10),
     },
   },
+  emailAndPassword: {
+    enabled: true, // メール＋パスワード認証を有効化
+  },
   plugins: [anonymous(),nextCookies()]
 });
