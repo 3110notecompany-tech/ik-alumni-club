@@ -10,6 +10,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 import { Calendar, ExternalLink } from "lucide-react";
 
 export function InformationCard({
@@ -38,11 +39,14 @@ export function InformationCard({
       </CardHeader>
       {information.imageUrl && (
         <CardContent>
-          <img
-            src={information.imageUrl}
-            alt={information.title}
-            className="h-48 w-full rounded-md object-cover"
-          />
+          <div className="relative h-48 w-full">
+            <Image
+              src={information.imageUrl}
+              alt={information.title}
+              fill
+              className="rounded-md object-cover"
+            />
+          </div>
         </CardContent>
       )}
       <CardFooter className="mt-auto flex gap-2">

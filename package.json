@@ -11,6 +11,7 @@
     "drizzle:generate": "pnpm drizzle-kit generate",
     "drizzle:migrate": "pnpm drizzle-kit migrate",
     "drizzle:gm": "pnpm drizzle:generate && pnpm drizzle:migrate",
+    "drizzle:fix-history": "tsx scripts/fix-migration-history.ts",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
