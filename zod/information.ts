@@ -3,9 +3,9 @@ import { z } from "zod";
 import { createInsertSchema } from "drizzle-zod";
 
 export const informationFormSchema = createInsertSchema(informations, {
-  date: z.coerce.date({
-    message: "有効な日付を入力してください",
-  }),
+  date: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "YYYY-MM-DD形式で入力してください"),
   title: z
     .string()
     .trim()
