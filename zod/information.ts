@@ -1,0 +1,51 @@
+import { informations } from "@/db/schemas/informations";
+import { z } from "zod";
+import { createInsertSchema } from "drizzle-zod";
+
+export const informationFormSchema = createInsertSchema(informations, {
+  date: z.coerce.date({
+    message: "有効な日付を入力してください",
+  }),
+  title: z
+    .string()
+    .trim()
+    .min(1, "タイトルを入力してください")
+    .max(255, "タイトルは255文字以内で入力してください"),
+  content: z.string().trim().min(1, "本文を入力してください"),
+  imageUrl: z
+    .string()
+    .optional()
+    .refine(
+      (val) => {
+        if (!val || val === "") return true;
+        try {
+          new URL(val);
+          return true;
+        } catch {
+          return false;
+        }
+      },
+      { message: "有効なURLを入力してください" }
+    ),
+  url: z
+    .string()
+    .optional()
+    .refine(
+      (val) => {
+        if (!val || val === "") return true;
+        try {
+          new URL(val);
+          return true;
+        } catch {
+          return false;
+        }
+      },
+      { message: "有効なURLを入力してください" }
+    ),
+  published: z.boolean().default(false),
+}).omit({
+  id: true,
+  createdBy: true,
+  createdAt: true,
+  updatedAt: true
+});
