@@ -8,6 +8,13 @@
       "when": 1759320825607,
       "tag": "0000_calm_rockslide",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1760700599017,
+      "tag": "0001_mute_dragon_lord",
+      "breakpoints": true
     }
   ]
 }
