@@ -18,12 +18,13 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import Link from "next/link";
 
 const menuItems = [
   {
     title: "ダッシュボード",
     icon: LayoutDashboard,
-    url: "#",
+    url: "/admin/dashboard",
   },
   {
     title: "会員管理",
@@ -33,7 +34,7 @@ const menuItems = [
   {
     title: "お知らせ管理",
     icon: Bell,
-    url: "#",
+    url: "/admin/informations",
   },
   {
     title: "設定",
@@ -58,10 +59,10 @@ export function AdminSidebar() {
               {menuItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild tooltip={item.title}>
-                    <a href={item.url}>
+                    <Link href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
