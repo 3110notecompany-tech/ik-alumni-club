@@ -4,6 +4,7 @@ import postgres from 'postgres';
 import * as authSchema from './schemas/auth';
 import * as petSchemas from './schemas/pet';
 import * as memberSchema from './schemas/member';
+import * as informationSchema from './schemas/informations';
 
 config({ path: '.env' });
 
@@ -13,6 +14,7 @@ export const db = drizzle({
     schema: {
         ...authSchema,
         ...petSchemas,
-        ...memberSchema
+        ...memberSchema,
+        ...informationSchema
     },
 });
