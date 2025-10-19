@@ -14,7 +14,7 @@ export default async function AdminLayout({
   children: React.ReactNode;
 }) {
   // セッション確認
-  const session = await verifySession();
+  await verifySession();
 
   // 管理者権限チェック
   const adminCheck = await isAdmin();

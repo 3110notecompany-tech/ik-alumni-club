@@ -11,6 +11,7 @@ import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Shield } from "lucide-react";
+import Link from "next/link";
 
 export function AdminLoginForm({
   className,
@@ -37,7 +38,7 @@ export function AdminLoginForm({
       // /admin/dashboardページで管理者権限チェックが行われる
       // 管理者でない場合はそこでリダイレクトされる
       router.push("/admin/dashboard");
-    } catch (error: any) {
+    } catch (error) {
       console.error("ログインエラー:", error);
       setError("メールアドレスまたはパスワードが正しくありません");
     } finally {
@@ -93,9 +94,9 @@ export function AdminLoginForm({
               </Button>
               <div className="text-center text-sm text-muted-foreground">
                 一般会員の方は
-                <a href="/login" className="underline underline-offset-4">
+                <Link href="/login" className="underline underline-offset-4">
                   こちら
-                </a>
+                </Link>
               </div>
             </div>
           </form>

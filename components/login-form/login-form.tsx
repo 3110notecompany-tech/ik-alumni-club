@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import coverImage from "./login-form-cover.jpg";
 import { authClient } from "@/lib/auth-client";
@@ -36,7 +35,7 @@ export function LoginForm({
 
       console.log("ログイン成功");
       router.push("/mypage");
-    } catch (error: any) {
+    } catch (error) {
       console.error("ログインエラー:", error);
       setError("メールアドレスまたはパスワードが正しくありません");
     } finally {

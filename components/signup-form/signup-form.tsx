@@ -50,9 +50,9 @@ export function SignupForm({
       });
       form.reset();
       router.push("/mypage");
-    } catch (error: any) {
+    } catch (error) {
       toast.error("エラーが発生しました", {
-        description: error.message || "サインアップに失敗しました",
+        description: error instanceof Error ? error.message : "サインアップに失敗しました",
       });
       console.error("サインアップエラー:", error);
     }

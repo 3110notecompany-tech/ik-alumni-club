@@ -42,7 +42,7 @@ export const informationFormSchema = createInsertSchema(informations, {
       },
       { message: "有効なURLを入力してください" }
     ),
-  published: z.boolean().default(false),
+  published: z.boolean(),
 }).omit({
   id: true,
   createdBy: true,
