@@ -5,6 +5,7 @@ import * as authSchema from './schemas/auth';
 import * as petSchemas from './schemas/pet';
 import * as memberSchema from './schemas/member';
 import * as informationSchema from './schemas/informations';
+import * as scheduleSchema from './schemas/schedules';
 
 config({ path: '.env' });
 
@@ -15,6 +16,7 @@ export const db = drizzle({
         ...authSchema,
         ...petSchemas,
         ...memberSchema,
-        ...informationSchema
+        ...informationSchema,
+        ...scheduleSchema
     },
 });
