@@ -42,7 +42,7 @@ export const scheduleFormSchema = createInsertSchema(schedules, {
       },
       { message: "有効なURLを入力してください" }
     ),
-  sortOrder: z.number().int().default(0),
+  sortOrder: z.number().int(),
   published: z.boolean(),
 }).omit({
   id: true,
