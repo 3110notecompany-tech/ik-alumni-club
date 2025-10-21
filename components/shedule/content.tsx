@@ -8,6 +8,8 @@ export async function ScheduleContents() {
   const items = schedules.slice(0, 3).map((schedule) => ({
     title: schedule.title,
     date: format(new Date(schedule.eventDate), "yyyy/MM/dd HH:mm"),
+    imageUrl: schedule.imageUrl,
+    linkUrl: schedule.linkUrl,
   }));
 
   return (
@@ -22,6 +24,8 @@ export async function ScheduleContents() {
               key={index}
               title={item.title}
               date={item.date}
+              imageUrl={item.imageUrl}
+              linkUrl={item.linkUrl}
             />
           ))
         )}

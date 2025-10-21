@@ -14,9 +14,13 @@ function formatCardDate(date: string | number) {
 export function ScheduleContentsCard({
   title,
   date,
+  imageUrl,
+  linkUrl,
 }: {
   title: string;
   date: string | number;
+  imageUrl?: string | null;
+  linkUrl?: string | null;
 }) {
   const { month, day, weekDay } = formatCardDate(date);
   const t = useTranslations("Contents");
@@ -31,14 +35,35 @@ export function ScheduleContentsCard({
       <div className="bg-white h-[192px] w-[242px] flex flex-col p-4 gap-[10px]">
         <div className="calendar-card-title">{title}</div>
         <div className="flex justify-center">
-          <Image
-            src="/components/shedule/Rectangle 5.svg"
-            alt="Rectangle"
-            width={210}
-            height={100}
-          />
+          {imageUrl ? (
+            <Image
+              src={imageUrl}
+              alt={title}
+              width={210}
+              height={100}
+              className="object-cover"
+            />
+          ) : (
+            <Image
+              src="/components/shedule/Rectangle 5.svg"
+              alt="Rectangle"
+              width={210}
+              height={100}
+            />
+          )}
         </div>
-        <div className="link-title">{t("click_here_for_details")}</div>
+        {linkUrl ? (
+          <a
+            href={linkUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link-title hover:underline"
+          >
+            {t("click_here_for_details")}
+          </a>
+        ) : (
+          <div className="link-title">{t("click_here_for_details")}</div>
+        )}
       </div>
     </div>
   );
