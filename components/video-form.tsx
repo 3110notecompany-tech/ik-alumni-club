@@ -2,7 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { videoFormSchema } from "@/zod/video";
+import { videoFormSchema, VideoFormData } from "@/zod/video";
 import {
   Form,
   FormControl,
@@ -18,7 +18,7 @@ import { Switch } from "@/components/ui/switch";
 import { useRouter } from "next/navigation";
 import { createVideo, updateVideo } from "@/actions/video";
 import { toast } from "sonner";
-import { Video, VideoFormData } from "@/types/video";
+import { Video } from "@/types/video";
 
 export function VideoForm({
   defaultValues,

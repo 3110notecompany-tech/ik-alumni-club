@@ -42,7 +42,7 @@ export const videoFormSchema = createInsertSchema(videos, {
       { message: "有効なURLを入力してください" }
     ),
   published: z.boolean(),
-  viewCount: z.number().int().min(0).default(0),
+  viewCount: z.number().int().min(0),
 }).omit({
   id: true,
   authorId: true,
@@ -50,3 +50,5 @@ export const videoFormSchema = createInsertSchema(videos, {
   createdAt: true,
   updatedAt: true,
 });
+
+export type VideoFormData = z.infer<typeof videoFormSchema>;
