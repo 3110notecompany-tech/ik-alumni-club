@@ -37,5 +37,20 @@
     "allRightsReserved": "All rights reserved.",
     "privacyPolicy": "プライバシーポリシー",
     "termsOfService": "利用規約"
+  },
+  "Schedule": {
+    "title": "スケジュール",
+    "eventName": "イベント名",
+    "eventDetails": "イベント詳細",
+    "eventDate": "イベント日時",
+    "imageUrl": "イベント画像URL",
+    "linkUrl": "詳細ページURL",
+    "sortOrder": "表示順",
+    "published": "公開",
+    "createSuccess": "スケジュールを作成しました",
+    "updateSuccess": "スケジュールを更新しました",
+    "deleteSuccess": "スケジュールを削除しました",
+    "deleteConfirm": "このスケジュールを削除してもよろしいですか?",
+    "noSchedules": "スケジュールがありません"
   }
 }

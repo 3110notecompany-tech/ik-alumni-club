@@ -4,6 +4,7 @@ import {
   LayoutDashboard,
   Users,
   Bell,
+  Calendar,
   Settings,
 } from "lucide-react";
 import {
@@ -35,6 +36,11 @@ const menuItems = [
     title: "お知らせ管理",
     icon: Bell,
     url: "/admin/informations",
+  },
+  {
+    title: "スケジュール管理",
+    icon: Calendar,
+    url: "/admin/schedules",
   },
   {
     title: "設定",

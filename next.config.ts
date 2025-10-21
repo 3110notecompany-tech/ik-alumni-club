@@ -4,6 +4,14 @@ import createNextIntlPlugin from 'next-intl/plugin';
 const nextConfig: NextConfig = {
   /* config options here */
   transpilePackages: ["@workspace/ui"],
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.kashiwa-cci.or.jp',
+      },
+    ],
+  },
 };
 
 const withNextIntl = createNextIntlPlugin('./app/web/i18n/request.ts');
