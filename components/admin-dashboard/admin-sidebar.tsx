@@ -5,6 +5,7 @@ import {
   Users,
   Bell,
   Calendar,
+  Video,
   Settings,
 } from "lucide-react";
 import {
@@ -41,6 +42,11 @@ const menuItems = [
     title: "スケジュール管理",
     icon: Calendar,
     url: "/admin/schedules",
+  },
+  {
+    title: "動画管理",
+    icon: Video,
+    url: "/admin/videos",
   },
   {
     title: "設定",
