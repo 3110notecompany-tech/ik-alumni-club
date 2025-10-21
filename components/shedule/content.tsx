@@ -1,10 +1,10 @@
-import { getUpcomingSchedules } from "@/data/schedule";
+import { getSchedules } from "@/data/schedule";
 import { format } from "date-fns";
 import { ContentsHeader } from "../contents/contents-header";
 import { ScheduleContentsCard } from "./card";
 
 export async function ScheduleContents() {
-  const schedules = await getUpcomingSchedules();
+  const schedules = await getSchedules();
   const items = schedules.slice(0, 3).map((schedule) => ({
     title: schedule.title,
     date: format(new Date(schedule.eventDate), "yyyy/MM/dd HH:mm"),
