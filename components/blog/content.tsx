@@ -1,13 +1,15 @@
 import { Contents } from "@/components/contents/content";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
+import { getRecentBlogs } from "@/data/blog";
 
-export function BlogContents() {
-  const t = useTranslations("Contents");
+export async function BlogContents() {
+  const t = await getTranslations("Contents");
+  const blogs = await getRecentBlogs(3);
 
-  return (
-    <Contents
-      title={t("blog")}
-      items={[{ title: "次回のイベント案内", date: "2025/10/15" }]}
-    />
-  );
+  const items = blogs.map((blog) => ({
+    title: blog.title,
+    date: new Date(blog.createdAt).toLocaleDateString("ja-JP"),
+  }));
+
+  return <Contents title={t("blog")} items={items} />;
 }
