@@ -237,6 +237,55 @@ imageUrl: z
 - `createdBy`: サーバー側で設定（改ざん防止）
 - `createdAt`, `updatedAt`: 自動設定
 
+##### 4. デフォルト値を持つbooleanフィールドの型エラー（重要）
+
+**問題**: `published`のようなデフォルト値付きbooleanフィールドで型エラーが発生する
+
+**エラー例**:
+```
+Type 'boolean | undefined' is not assignable to type 'boolean'.
+  Type 'undefined' is not assignable to type 'boolean'.
+```
+
+**原因**:
+- `createInsertSchema()`は自動的にNOT NULL制約がないフィールドを`optional`にする
+- デフォルト値があっても`boolean | undefined`型になる
+- react-hook-formの`zodResolver`が厳密な型チェックを行うため、エラーになる
+
+**❌ 問題のある実装**:
+```typescript
+export const blogFormSchema = createInsertSchema(blogs, {
+  title: z.string().trim().min(1),
+  published: z.boolean().default(false), // ← これだけでは不十分
+}).omit({
+  id: true,
+  // ...
+});
+```
+
+**✅ 正しい実装**:
+```typescript
+export const blogFormSchema = createInsertSchema(blogs, {
+  title: z.string().trim().min(1),
+  // publishedはここでは定義しない
+})
+  .omit({
+    id: true,
+    authorId: true,
+    // ...
+  })
+  .extend({
+    published: z.boolean().default(false), // ← .extend()で明示的に定義
+  });
+```
+
+**解決方法**:
+1. `createInsertSchema()`内で`published`を定義しない
+2. `.omit()`の後に`.extend()`を使って明示的に型を定義
+3. これにより`published: boolean`型（`undefined`なし）になる
+
+**教訓**: デフォルト値付きbooleanフィールドは`.extend()`で定義する
+
 ---
 
 ### フェーズ3: 型定義層の設計
