@@ -304,6 +304,106 @@ export const blogFormSchema = createInsertSchema(blogs, {
 - `.default()`はZodスキーマでは使わず、データベーススキーマに任せる
 - `.extend()`パターンも不要（型エラーが解決しない）
 
+##### 5. 数値フィールドでの`z.coerce`の使用による型エラー（重要）
+
+**問題**: `z.coerce.number()`を使用すると、react-hook-formで型エラーが発生する
+
+**エラー例**:
+```
+型 'Control<{ title: string; issueNumber: number; ... }, any, TFieldValues>'
+を型 'Control<{ title: string; issueNumber: number; ... }, any, { ...; }>'
+に割り当てることはできません。
+```
+
+**原因**:
+- `z.coerce.number()`は内部的に`unknown`型を経由するため、TypeScriptの型推論が正しく機能しない
+- react-hook-formの厳密な型チェックと競合し、複雑な型エラーが発生する
+
+**❌ 問題のある実装**:
+```typescript
+export const newsletterFormSchema = createInsertSchema(newsletters, {
+  issueNumber: z.coerce  // ← これが原因
+    .number()
+    .int("号数は整数で入力してください")
+    .positive("号数は正の数で入力してください"),
+  // ...
+});
+```
+
+**✅ 正しい実装**:
+```typescript
+export const newsletterFormSchema = createInsertSchema(newsletters, {
+  issueNumber: z  // ← z.coerceを削除
+    .number()
+    .int("号数は整数で入力してください")
+    .positive("号数は正の数で入力してください"),
+  // ...
+});
+```
+
+**フォーム側での対応**:
+```typescript
+// デフォルト値で数値型を保証
+defaultValues: {
+  issueNumber: nextIssueNumber || 1,  // ← 数値を直接設定
+  // ...
+}
+
+// または編集時
+defaultValues: {
+  issueNumber: Number(defaultValues.issueNumber),  // ← 明示的に数値に変換
+  // ...
+}
+```
+
+**Input要素での対応**:
+```tsx
+<Input
+  type="number"  // ← HTML5のnumber型を使用
+  {...field}
+/>
+```
+
+**教訓**:
+- react-hook-formと組み合わせる場合、`z.coerce`は避ける
+- 数値フィールドは`z.number()`を使用し、フォーム側で数値型を保証する
+- `type="number"`のInput要素を使用すれば、ユーザー入力は自動的に数値として扱われる
+- 必要に応じて、フォームのデフォルト値設定時に`Number()`で明示的に変換する
+
+##### 6. オプショナルフィールドのInput要素での扱い
+
+**問題**: オプショナルな文字列フィールド（`thumbnailUrl?: string`）をInput要素に渡すと、`undefined`の警告が出る場合がある
+
+**解決策**: `value={field.value || ""}`で空文字列にフォールバック
+
+```tsx
+// ✅ 正しい実装
+<FormField
+  control={form.control}
+  name="thumbnailUrl"
+  render={({ field }) => (
+    <FormItem>
+      <FormControl>
+        <Input
+          {...field}
+          value={field.value || ""}  // ← undefinedを空文字列に変換
+        />
+      </FormControl>
+    </FormItem>
+  )}
+/>
+```
+
+**注意**:
+- この対応は必須ではないが、一部の環境やReactバージョンで警告が出る場合がある
+- デフォルト値設定時に`?? ""`を使う方法もある
+```typescript
+defaultValues: {
+  thumbnailUrl: defaultValues.thumbnailUrl ?? "",
+  pdfUrl: defaultValues.pdfUrl ?? "",
+}
+```
+
 ---
 
 ### フェーズ3: 型定義層の設計

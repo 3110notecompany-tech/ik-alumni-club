@@ -3,7 +3,7 @@ import { z } from "zod";
 import { newsletters } from "@/db/schemas/newsletters";
 
 export const newsletterFormSchema = createInsertSchema(newsletters, {
-  issueNumber: z.coerce
+  issueNumber: z
     .number()
     .int("号数は整数で入力してください")
     .positive("号数は正の数で入力してください"),
