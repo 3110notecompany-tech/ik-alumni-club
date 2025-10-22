@@ -267,24 +267,42 @@ export const blogFormSchema = createInsertSchema(blogs, {
 ```typescript
 export const blogFormSchema = createInsertSchema(blogs, {
   title: z.string().trim().min(1),
-  // publishedはここでは定義しない
-})
-  .omit({
-    id: true,
-    authorId: true,
-    // ...
-  })
-  .extend({
-    published: z.boolean().default(false), // ← .extend()で明示的に定義
-  });
+  published: z.boolean(), // ← デフォルト値は付けない
+}).omit({
+  id: true,
+  authorId: true,
+  // ...
+});
 ```
 
 **解決方法**:
-1. `createInsertSchema()`内で`published`を定義しない
-2. `.omit()`の後に`.extend()`を使って明示的に型を定義
-3. これにより`published: boolean`型（`undefined`なし）になる
+1. `createInsertSchema()`内で`published: z.boolean()`を定義する
+2. **重要**: `.default(false)`は付けない
+3. デフォルト値はデータベーススキーマで定義する（`.default(false)`）
+4. これにより`published: boolean`型（`undefined`なし）になる
 
-**教訓**: デフォルト値付きbooleanフィールドは`.extend()`で定義する
+**実装例（informations.ts、blogs.tsで実証済み）**:
+```typescript
+// データベーススキーマ (db/schemas/blogs.ts)
+export const blogs = pgTable("blogs", {
+  // ...
+  published: boolean("published").notNull().default(false), // ← DBでデフォルト値
+});
+
+// Zodスキーマ (zod/blog.ts)
+export const blogFormSchema = createInsertSchema(blogs, {
+  // ...
+  published: z.boolean(), // ← .default()なし
+}).omit({
+  id: true,
+  // ...
+});
+```
+
+**教訓**:
+- デフォルト値付きbooleanフィールドは`createInsertSchema()`内で`z.boolean()`のみ定義
+- `.default()`はZodスキーマでは使わず、データベーススキーマに任せる
+- `.extend()`パターンも不要（型エラーが解決しない）
 
 ---
 
