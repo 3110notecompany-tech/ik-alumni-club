@@ -7,6 +7,7 @@ import {
   Calendar,
   Video,
   FileText,
+  Newspaper,
   Settings,
 } from "lucide-react";
 import {
@@ -38,6 +39,11 @@ const menuItems = [
     title: "お知らせ管理",
     icon: Bell,
     url: "/admin/informations",
+  },
+  {
+    title: "ニュースレター管理",
+    icon: Newspaper,
+    url: "/admin/newsletters",
   },
   {
     title: "スケジュール管理",
