@@ -43,6 +43,13 @@
       "when": 1761057153109,
       "tag": "0005_noisy_monster_badoon",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1761150683349,
+      "tag": "0006_sharp_the_executioner",
+      "breakpoints": true
     }
   ]
 }

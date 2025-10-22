@@ -237,6 +237,73 @@ imageUrl: z
 - `createdBy`: サーバー側で設定（改ざん防止）
 - `createdAt`, `updatedAt`: 自動設定
 
+##### 4. デフォルト値を持つbooleanフィールドの型エラー（重要）
+
+**問題**: `published`のようなデフォルト値付きbooleanフィールドで型エラーが発生する
+
+**エラー例**:
+```
+Type 'boolean | undefined' is not assignable to type 'boolean'.
+  Type 'undefined' is not assignable to type 'boolean'.
+```
+
+**原因**:
+- `createInsertSchema()`は自動的にNOT NULL制約がないフィールドを`optional`にする
+- デフォルト値があっても`boolean | undefined`型になる
+- react-hook-formの`zodResolver`が厳密な型チェックを行うため、エラーになる
+
+**❌ 問題のある実装**:
+```typescript
+export const blogFormSchema = createInsertSchema(blogs, {
+  title: z.string().trim().min(1),
+  published: z.boolean().default(false), // ← これだけでは不十分
+}).omit({
+  id: true,
+  // ...
+});
+```
+
+**✅ 正しい実装**:
+```typescript
+export const blogFormSchema = createInsertSchema(blogs, {
+  title: z.string().trim().min(1),
+  published: z.boolean(), // ← デフォルト値は付けない
+}).omit({
+  id: true,
+  authorId: true,
+  // ...
+});
+```
+
+**解決方法**:
+1. `createInsertSchema()`内で`published: z.boolean()`を定義する
+2. **重要**: `.default(false)`は付けない
+3. デフォルト値はデータベーススキーマで定義する（`.default(false)`）
+4. これにより`published: boolean`型（`undefined`なし）になる
+
+**実装例（informations.ts、blogs.tsで実証済み）**:
+```typescript
+// データベーススキーマ (db/schemas/blogs.ts)
+export const blogs = pgTable("blogs", {
+  // ...
+  published: boolean("published").notNull().default(false), // ← DBでデフォルト値
+});
+
+// Zodスキーマ (zod/blog.ts)
+export const blogFormSchema = createInsertSchema(blogs, {
+  // ...
+  published: z.boolean(), // ← .default()なし
+}).omit({
+  id: true,
+  // ...
+});
+```
+
+**教訓**:
+- デフォルト値付きbooleanフィールドは`createInsertSchema()`内で`z.boolean()`のみ定義
+- `.default()`はZodスキーマでは使わず、データベーススキーマに任せる
+- `.extend()`パターンも不要（型エラーが解決しない）
+
 ---
 
 ### フェーズ3: 型定義層の設計
