@@ -32,14 +32,17 @@ export const blogFormSchema = createInsertSchema(blogs, {
       },
       { message: "有効なURLを入力してください" }
     ),
-  published: z.boolean().default(false),
-}).omit({
-  id: true,
-  authorId: true,
-  authorName: true,
-  viewCount: true,
-  createdAt: true,
-  updatedAt: true,
-});
+})
+  .omit({
+    id: true,
+    authorId: true,
+    authorName: true,
+    viewCount: true,
+    createdAt: true,
+    updatedAt: true,
+  })
+  .extend({
+    published: z.boolean().default(false),
+  });
 
 export type BlogFormData = z.infer<typeof blogFormSchema>;
