@@ -20,6 +20,7 @@ import { useRouter } from "next/navigation";
 import { createInformation, updateInformation } from "@/actions/information";
 import { toast } from "sonner";
 import { Information, InformationFormData } from "@/types/information";
+import { InputImage } from "@/components/input-image";
 
 export function InformationForm({
   defaultValues,
@@ -131,14 +132,19 @@ export function InformationForm({
           name="imageUrl"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>画像URL（任意）</FormLabel>
+              <FormLabel>アイキャッチ画像（任意）</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="https://example.com/image.jpg"
-                  {...field}
+                <InputImage
+                  width={400}
+                  aspectRatio={16 / 9}
+                  resultWidth={800}
+                  value={field.value}
+                  onChange={field.onChange}
                 />
               </FormControl>
-              <FormDescription>アイキャッチ画像のURLを入力してください</FormDescription>
+              <FormDescription>
+                画像をドラッグ&ドロップまたはクリックして選択してください
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}

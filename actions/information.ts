@@ -6,14 +6,22 @@ import { verifyAdmin } from "@/lib/session";
 import { InformationFormData } from "@/types/information";
 import { informationFormSchema } from "@/zod/information";
 import { eq } from "drizzle-orm";
+import { resolveImageUpload } from "@/lib/storage";
+import { nanoid } from "nanoid";
 
 // お知らせ作成
 export async function createInformation(formData: InformationFormData) {
   const { userId } = await verifyAdmin();
   const data = informationFormSchema.parse(formData);
 
+  // 画像URLの処理（dataURLの場合はアップロード）
+  const imageUrl = data.imageUrl
+    ? await resolveImageUpload(`informations/${nanoid()}`, data.imageUrl)
+    : null;
+
   await db.insert(informations).values({
     ...data,
+    imageUrl,
     createdBy: userId,
   });
 }
@@ -26,9 +34,17 @@ export async function updateInformation(
   await verifyAdmin();
   const data = informationFormSchema.parse(formData);
 
+  // 画像URLの処理（dataURLの場合はアップロード）
+  const imageUrl = data.imageUrl
+    ? await resolveImageUpload(`informations/${id}`, data.imageUrl)
+    : null;
+
   await db
     .update(informations)
-    .set(data)
+    .set({
+      ...data,
+      imageUrl,
+    })
     .where(eq(informations.id, id));
 }
 
