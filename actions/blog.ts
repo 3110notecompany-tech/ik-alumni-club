@@ -6,6 +6,8 @@ import { blogFormSchema, type BlogFormData } from "@/zod/blog";
 import { verifyAdmin } from "@/lib/session";
 import { eq, sql } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
+import { resolveImageUpload } from "@/lib/storage";
+import { nanoid } from "nanoid";
 
 /**
  * ブログ記事を新規作成
@@ -26,17 +28,23 @@ export async function createBlog(formData: BlogFormData) {
     throw new Error("ユーザーが見つかりません");
   }
 
-  // 4. データベースに挿入
+  // 4. 画像URLの処理（dataURLの場合はアップロード）
+  const thumbnailUrl = data.thumbnailUrl
+    ? await resolveImageUpload(`blogs/${nanoid()}`, data.thumbnailUrl)
+    : null;
+
+  // 5. データベースに挿入
   const [newBlog] = await db
     .insert(blogs)
     .values({
       ...data,
+      thumbnailUrl,
       authorId: userId,
       authorName: user.name,
     })
     .returning();
 
-  // 5. キャッシュ再検証
+  // 6. キャッシュ再検証
   revalidatePath("/admin/blogs");
   revalidatePath("/blogs");
 
@@ -53,10 +61,18 @@ export async function updateBlog(id: string, formData: BlogFormData) {
   // 2. バリデーション
   const data = blogFormSchema.parse(formData);
 
-  // 3. データベース更新
+  // 3. 画像URLの処理（dataURLの場合はアップロード）
+  const thumbnailUrl = data.thumbnailUrl
+    ? await resolveImageUpload(`blogs/${id}`, data.thumbnailUrl)
+    : null;
+
+  // 4. データベース更新
   const [updatedBlog] = await db
     .update(blogs)
-    .set(data)
+    .set({
+      ...data,
+      thumbnailUrl,
+    })
     .where(eq(blogs.id, id))
     .returning();
 
@@ -64,7 +80,7 @@ export async function updateBlog(id: string, formData: BlogFormData) {
     throw new Error("ブログが見つかりません");
   }
 
-  // 4. キャッシュ再検証
+  // 5. キャッシュ再検証
   revalidatePath("/admin/blogs");
   revalidatePath("/blogs");
   revalidatePath(`/blogs/${id}`);
