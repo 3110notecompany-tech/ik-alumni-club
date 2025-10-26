@@ -26,6 +26,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { InputImage } from "@/components/input-image";
+import { InputFile } from "@/components/input-file";
 
 interface NewsletterFormProps {
   defaultValues?: NewsletterFormData & { id?: string };
@@ -175,44 +177,48 @@ export function NewsletterForm({
           )}
         />
 
-        {/* サムネイル画像URL */}
+        {/* サムネイル画像 */}
         <FormField
           control={form.control}
           name="thumbnailUrl"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>サムネイル画像URL</FormLabel>
+              <FormLabel>サムネイル画像</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="https://example.com/image.jpg"
-                  {...field}
+                <InputImage
+                  width={400}
+                  aspectRatio={16 / 9}
+                  resultWidth={800}
                   value={field.value || ""}
+                  onChange={field.onChange}
                 />
               </FormControl>
               <FormDescription>
-                一覧ページで表示される画像のURL
+                画像をドラッグ&ドロップまたはクリックして選択してください
               </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        {/* PDF URL */}
+        {/* PDF版 */}
         <FormField
           control={form.control}
           name="pdfUrl"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>PDF版URL</FormLabel>
+              <FormLabel>PDF版</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="https://example.com/newsletter.pdf"
-                  {...field}
+                <InputFile
                   value={field.value || ""}
+                  onChange={field.onChange}
+                  accept="application/pdf"
+                  maxSize={1024 * 1024 * 20} // 20MB
+                  placeholder="PDFファイルを選択してください"
                 />
               </FormControl>
               <FormDescription>
-                PDF版がある場合のみ入力してください
+                PDF版の会報ファイルをアップロードしてください（最大20MB）
               </FormDescription>
               <FormMessage />
             </FormItem>

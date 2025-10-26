@@ -21,6 +21,11 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '25mb', // Server Actionsのボディサイズ制限を25MBに設定
+    },
+  },
 };
 
 const withNextIntl = createNextIntlPlugin('./app/web/i18n/request.ts');

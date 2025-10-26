@@ -6,6 +6,8 @@ import { newsletterFormSchema, type NewsletterFormData } from "@/zod/newsletter"
 import { verifyAdmin } from "@/lib/session";
 import { eq, sql } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
+import { resolveImageUpload } from "@/lib/storage";
+import { nanoid } from "nanoid";
 
 /**
  * ニュースレターを新規作成
@@ -26,21 +28,32 @@ export async function createNewsletter(formData: NewsletterFormData) {
     throw new Error("ユーザーが見つかりません");
   }
 
-  // 4. データベースに挿入
+  // 4. 画像URLの処理（dataURLの場合はアップロード）
+  const newsletterId = nanoid();
+  const thumbnailUrl = data.thumbnailUrl
+    ? await resolveImageUpload(`newsletters/${newsletterId}`, data.thumbnailUrl)
+    : null;
+
+  // 5. PDF URLの処理（dataURLの場合はアップロード）
+  const pdfUrl = data.pdfUrl
+    ? await resolveImageUpload(`newsletters/${newsletterId}`, data.pdfUrl)
+    : null;
+
+  // 6. データベースに挿入
   const [newNewsletter] = await db
     .insert(newsletters)
     .values({
       ...data,
       authorId: userId,
       authorName: user.name,
-      thumbnailUrl: data.thumbnailUrl || null,
-      pdfUrl: data.pdfUrl || null,
+      thumbnailUrl,
+      pdfUrl,
       category: data.category || null,
       publishedAt: data.published ? new Date() : null,
     })
     .returning();
 
-  // 5. キャッシュ再検証
+  // 6. キャッシュ再検証
   revalidatePath("/admin/newsletters");
   revalidatePath("/newsletters");
 
@@ -77,20 +90,30 @@ export async function updateNewsletter(id: string, formData: NewsletterFormData)
     publishedAt = new Date();
   }
 
-  // 5. データベース更新
+  // 5. 画像URLの処理（dataURLの場合はアップロード）
+  const thumbnailUrl = data.thumbnailUrl
+    ? await resolveImageUpload(`newsletters/${id}`, data.thumbnailUrl)
+    : null;
+
+  // 6. PDF URLの処理（dataURLの場合はアップロード）
+  const pdfUrl = data.pdfUrl
+    ? await resolveImageUpload(`newsletters/${id}`, data.pdfUrl)
+    : null;
+
+  // 7. データベース更新
   const [updatedNewsletter] = await db
     .update(newsletters)
     .set({
       ...data,
-      thumbnailUrl: data.thumbnailUrl || null,
-      pdfUrl: data.pdfUrl || null,
+      thumbnailUrl,
+      pdfUrl,
       category: data.category || null,
       publishedAt,
     })
     .where(eq(newsletters.id, id))
     .returning();
 
-  // 6. キャッシュ再検証
+  // 7. キャッシュ再検証
   revalidatePath("/admin/newsletters");
   revalidatePath("/newsletters");
   revalidatePath(`/newsletters/${id}`);
