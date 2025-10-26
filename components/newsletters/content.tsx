@@ -1,4 +1,5 @@
-import { Contents } from "@/components/contents/content";
+import { ContentsHeader } from "@/components/contents/contents-header";
+import { ContentsCard } from "@/components/contents/contents-card";
 import { getTranslations } from "next-intl/server";
 import { getLatestNewsletters } from "@/data/newsletter";
 
@@ -21,5 +22,18 @@ export async function NewsLettersContents() {
         }),
   }));
 
-  return <Contents title={t("newsletters")} items={items} />;
+  return (
+    <div className="flex flex-col">
+      <ContentsHeader title={t("newsletters")} />
+      <div className="flex flex-col gap-[30px] mt-[60px]">
+        {items.length === 0 ? (
+          <p>ニュースレターはありません</p>
+        ) : (
+          items.map((item, index) => (
+            <ContentsCard key={index} title={item.title} date={item.date} />
+          ))
+        )}
+      </div>
+    </div>
+  );
 }
