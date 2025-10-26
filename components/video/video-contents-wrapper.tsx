@@ -27,25 +27,29 @@ export function VideoContentsWrapper({ title, items }: VideoContentsWrapperProps
     setCurrentIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1));
   };
 
-  if (items.length === 0) {
-    return null;
-  }
-
   return (
     <div className="flex flex-col">
       <ContentsHeader title={title} />
-      <Carousel onPrevious={handlePrevious} onNext={handleNext}>
-        <VideoCard
-          videoUrl={items[currentIndex].videoUrl}
-          title={items[currentIndex].title}
-        />
-      </Carousel>
-      <CarouselIndicator
-        totalItems={items.length}
-        currentIndex={currentIndex}
-        maxDots={3}
-        onDotClick={setCurrentIndex}
-      />
+      {items.length === 0 ? (
+        <div className="mt-[60px]">
+          <p>動画はありません</p>
+        </div>
+      ) : (
+        <>
+          <Carousel onPrevious={handlePrevious} onNext={handleNext}>
+            <VideoCard
+              videoUrl={items[currentIndex].videoUrl}
+              title={items[currentIndex].title}
+            />
+          </Carousel>
+          <CarouselIndicator
+            totalItems={items.length}
+            currentIndex={currentIndex}
+            maxDots={3}
+            onDotClick={setCurrentIndex}
+          />
+        </>
+      )}
     </div>
   );
 }
