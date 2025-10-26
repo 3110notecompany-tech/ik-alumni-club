@@ -6,6 +6,8 @@ import { verifyAdmin } from "@/lib/session";
 import { ScheduleFormData } from "@/types/schedule";
 import { scheduleFormSchema } from "@/zod/schedule";
 import { eq } from "drizzle-orm";
+import { resolveImageUpload } from "@/lib/storage";
+import { nanoid } from "nanoid";
 
 // スケジュール作成
 export async function createSchedule(formData: ScheduleFormData) {
@@ -17,8 +19,14 @@ export async function createSchedule(formData: ScheduleFormData) {
     where: (users, { eq }) => eq(users.id, userId),
   });
 
+  // 画像URLの処理（dataURLの場合はアップロード）
+  const imageUrl = data.imageUrl
+    ? await resolveImageUpload(`schedules/${nanoid()}`, data.imageUrl)
+    : null;
+
   await db.insert(schedules).values({
     ...data,
+    imageUrl,
     eventDate: new Date(data.eventDate),
     authorId: userId,
     authorName: user?.name || "",
@@ -34,10 +42,16 @@ export async function updateSchedule(
   await verifyAdmin();
   const data = scheduleFormSchema.parse(formData);
 
+  // 画像URLの処理（dataURLの場合はアップロード）
+  const imageUrl = data.imageUrl
+    ? await resolveImageUpload(`schedules/${id}`, data.imageUrl)
+    : null;
+
   await db
     .update(schedules)
     .set({
       ...data,
+      imageUrl,
       eventDate: new Date(data.eventDate),
     })
     .where(eq(schedules.id, id));
