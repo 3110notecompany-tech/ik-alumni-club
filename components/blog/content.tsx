@@ -1,4 +1,5 @@
-import { Contents } from "@/components/contents/content";
+import { ContentsHeader } from "@/components/contents/contents-header";
+import { ContentsCard } from "@/components/contents/contents-card";
 import { getTranslations } from "next-intl/server";
 import { getRecentBlogs } from "@/data/blog";
 
@@ -11,5 +12,18 @@ export async function BlogContents() {
     date: new Date(blog.createdAt).toLocaleDateString("ja-JP"),
   }));
 
-  return <Contents title={t("blog")} items={items} />;
+  return (
+    <div className="flex flex-col">
+      <ContentsHeader title={t("blog")} />
+      <div className="flex flex-col gap-[30px] mt-[60px]">
+        {items.length === 0 ? (
+          <p>ブログ記事はありません</p>
+        ) : (
+          items.map((item, index) => (
+            <ContentsCard key={index} title={item.title} date={item.date} />
+          ))
+        )}
+      </div>
+    </div>
+  );
 }
