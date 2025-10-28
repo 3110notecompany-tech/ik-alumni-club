@@ -21,6 +21,7 @@ import { createSchedule, updateSchedule } from "@/actions/schedule";
 import { toast } from "sonner";
 import { Schedule, ScheduleFormData } from "@/types/schedule";
 import { format } from "date-fns";
+import { InputImage } from "@/components/input-image";
 
 export function ScheduleForm({
   defaultValues,
@@ -134,14 +135,19 @@ export function ScheduleForm({
           name="imageUrl"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>イベント画像URL（任意）</FormLabel>
+              <FormLabel>イベント画像（任意）</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="https://example.com/image.jpg"
-                  {...field}
+                <InputImage
+                  width={400}
+                  aspectRatio={16 / 9}
+                  resultWidth={800}
+                  value={field.value || ""}
+                  onChange={field.onChange}
                 />
               </FormControl>
-              <FormDescription>イベント画像のURLを入力してください</FormDescription>
+              <FormDescription>
+                画像をドラッグ&ドロップまたはクリックして選択してください
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}

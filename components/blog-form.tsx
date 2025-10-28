@@ -19,6 +19,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { InputImage } from "@/components/input-image";
 
 interface BlogFormProps {
   defaultValues?: BlogFormData & { id?: string };
@@ -125,22 +126,24 @@ export function BlogForm({ defaultValues, mode }: BlogFormProps) {
           )}
         />
 
-        {/* サムネイル画像URL */}
+        {/* サムネイル画像 */}
         <FormField
           control={form.control}
           name="thumbnailUrl"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>サムネイル画像URL</FormLabel>
+              <FormLabel>サムネイル画像</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="https://example.com/image.jpg"
-                  {...field}
+                <InputImage
+                  width={400}
+                  aspectRatio={16 / 9}
+                  resultWidth={800}
                   value={field.value || ""}
+                  onChange={field.onChange}
                 />
               </FormControl>
               <FormDescription>
-                一覧ページで表示される画像のURLを入力
+                画像をドラッグ&ドロップまたはクリックして選択してください
               </FormDescription>
               <FormMessage />
             </FormItem>
