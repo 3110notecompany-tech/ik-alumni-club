@@ -9,63 +9,81 @@ import tokutenImg from "./tokuten.jpg";
 const benefits = {
   individual: [
     {
-      title: '会員限定グッズ',
-      description: '会員しか持っていない、限定グッズをプレゼント！',
-      image: 'https://ik-alumni-cgt.com/wp-content/uploads/2025/07/IMG_3582-scaled.jpg',
+      title: "会員限定グッズ",
+      description: "会員しか持っていない、限定グッズをプレゼント！",
+      image:
+        "https://ik-alumni-cgt.com/wp-content/uploads/2025/07/IMG_3582-scaled.jpg",
     },
     {
-      title: 'コンサート映像の配信',
-      description: '過去のコンサート映像から、最新のコンサート映像までいつでもどこでもご覧いただけます！',
-      image: 'https://ik-alumni-cgt.com/wp-content/uploads/2025/07/3O6A8935.jpg',
+      title: "コンサート映像の配信",
+      description:
+        "過去のコンサート映像から、最新のコンサート映像までいつでもどこでもご覧いただけます！",
+      image:
+        "https://ik-alumni-cgt.com/wp-content/uploads/2025/07/3O6A8935.jpg",
     },
     {
-      title: '会員ページ限定コンテンツ',
-      description: 'イベントの様子や、SNSでは発信していない限定コンテンツをお届けします！',
-      image: 'https://ik-alumni-cgt.com/wp-content/uploads/2025/07/fcd9a261c2f0348d1f29ddfb2a06cc8c-scaled.jpg',
+      title: "会員ページ限定コンテンツ",
+      description:
+        "イベントの様子や、SNSでは発信していない限定コンテンツをお届けします！",
+      image:
+        "https://ik-alumni-cgt.com/wp-content/uploads/2025/07/fcd9a261c2f0348d1f29ddfb2a06cc8c-scaled.jpg",
     },
     {
-      title: '会報の配信',
-      description: '活動内容の報告や、イベントの最新情報をお届けします！',
-      image: 'https://ik-alumni-cgt.com/wp-content/uploads/2025/06/後援会ロゴ　訂正-4-scaled.png',
+      title: "会報の配信",
+      description: "活動内容の報告や、イベントの最新情報をお届けします！",
+      image:
+        "https://ik-alumni-cgt.com/wp-content/uploads/2025/06/後援会ロゴ　訂正-4-scaled.png",
     },
     {
-      title: 'コンサート優先入場権',
-      description: '2月に行われる自主公演にて、他のお客様よりも一足先に、入場をし、席を確保することができます！',
-      image: 'https://ik-alumni-cgt.com/wp-content/uploads/2025/07/117213171e45978db06a80dbc1715843-scaled.jpg',
+      title: "コンサート優先入場権",
+      description:
+        "2月に行われる自主公演にて、他のお客様よりも一足先に、入場をし、席を確保することができます！",
+      image:
+        "https://ik-alumni-cgt.com/wp-content/uploads/2025/07/117213171e45978db06a80dbc1715843-scaled.jpg",
     },
   ],
   business: [
     {
-      title: 'ホームページへの掲載',
-      description: '企業様向けに、企業のロゴとHPをALUMNI HPおよびALUMNI CGT Supporter\'s Club HPに掲載することができます！',
-      image: 'https://ik-alumni-cgt.com/wp-content/uploads/2025/06/後援会ロゴ　訂正-4-scaled.png',
+      title: "ホームページへの掲載",
+      description:
+        "企業様向けに、企業のロゴとHPをALUMNI HPおよびALUMNI CGT Supporter's Club HPに掲載することができます！",
+      image:
+        "https://ik-alumni-cgt.com/wp-content/uploads/2025/06/後援会ロゴ　訂正-4-scaled.png",
     },
     {
-      title: 'コンサートプログラムへの掲載（企業名）',
-      description: '支援してくださる企業様向けに、コンサートプログラムへの掲載をいたします。',
-      image: 'https://ik-alumni-cgt.com/wp-content/uploads/2025/07/IMG_2202-scaled.jpg',
+      title: "コンサートプログラムへの掲載（企業名）",
+      description:
+        "支援してくださる企業様向けに、コンサートプログラムへの掲載をいたします。",
+      image:
+        "https://ik-alumni-cgt.com/wp-content/uploads/2025/07/IMG_2202-scaled.jpg",
     },
     {
-      title: '企業ロゴ入りオリジナルフラッグ',
-      description: '企業のロゴが入ったオリジナルフラッグを作成します！',
-      image: 'https://ik-alumni-cgt.com/wp-content/uploads/2025/07/IMG_2221-scaled.jpg',
+      title: "企業ロゴ入りオリジナルフラッグ",
+      description: "企業のロゴが入ったオリジナルフラッグを作成します！",
+      image:
+        "https://ik-alumni-cgt.com/wp-content/uploads/2025/07/IMG_2221-scaled.jpg",
     },
   ],
   platinum: [
     {
-      title: 'コンサートプログラムへの広告掲載',
-      description: '2月に行われる自主公演のプログラムに、企業様の広告を掲載することができます。',
-      image: 'https://ik-alumni-cgt.com/wp-content/uploads/2025/07/IMG_2202-scaled.jpg',
+      title: "コンサートプログラムへの広告掲載",
+      description:
+        "2月に行われる自主公演のプログラムに、企業様の広告を掲載することができます。",
+      image:
+        "https://ik-alumni-cgt.com/wp-content/uploads/2025/07/IMG_2202-scaled.jpg",
     },
     {
-      title: 'プラチナ会員限定オリジナルウェア',
-      description: 'プラチナ会員限定のオリジナルウェアをプレゼントします。（1着）',
-      image: 'https://ik-alumni-cgt.com/wp-content/uploads/2025/06/後援会ロゴ　訂正-4-scaled.png',
+      title: "プラチナ会員限定オリジナルウェア",
+      description:
+        "プラチナ会員限定のオリジナルウェアをプレゼントします。（1着）",
+      image:
+        "https://ik-alumni-cgt.com/wp-content/uploads/2025/06/後援会ロゴ　訂正-4-scaled.png",
     },
     {
-      title: 'メンバーからのお礼動画',
-      description: 'メンバーからのオリジナルお礼動画を配信します！',
-      image: 'https://ik-alumni-cgt.com/wp-content/uploads/2025/07/IMG_5737-scaled.jpg',
+      title: "メンバーからのお礼動画",
+      description: "メンバーからのオリジナルお礼動画を配信します！",
+      image:
+        "https://ik-alumni-cgt.com/wp-content/uploads/2025/07/IMG_5737-scaled.jpg",
     },
   ],
 };
@@ -92,7 +110,7 @@ export default function SupportersPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-6">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-8">
-              IK ALUMNI CGT supporter's CLUB とは
+              IK ALUMNI CGT supporters CLUB とは
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed">
               千葉県柏市を拠点に活動している「IK ALUMNI CGT」の後援会です。
@@ -196,7 +214,10 @@ export default function SupportersPage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {benefits.individual.map((benefit, index) => (
-                <div key={index} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <div
+                  key={index}
+                  className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                >
                   <div className="h-2 bg-gradient-to-r from-indigo-500 to-purple-500"></div>
                   <div className="relative h-48 bg-gray-100">
                     <Image
@@ -210,9 +231,7 @@ export default function SupportersPage() {
                     <h4 className="text-xl font-bold text-gray-900 mb-3">
                       {benefit.title}
                     </h4>
-                    <p className="text-gray-600">
-                      {benefit.description}
-                    </p>
+                    <p className="text-gray-600">{benefit.description}</p>
                   </div>
                 </div>
               ))}
@@ -238,7 +257,10 @@ export default function SupportersPage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {benefits.business.map((benefit, index) => (
-                <div key={index} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <div
+                  key={index}
+                  className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                >
                   <div className="h-2 bg-gradient-to-r from-red-500 to-orange-500"></div>
                   <div className="relative h-48 bg-gray-100">
                     <Image
@@ -252,9 +274,7 @@ export default function SupportersPage() {
                     <h4 className="text-xl font-bold text-gray-900 mb-3">
                       {benefit.title}
                     </h4>
-                    <p className="text-gray-600">
-                      {benefit.description}
-                    </p>
+                    <p className="text-gray-600">{benefit.description}</p>
                   </div>
                 </div>
               ))}
@@ -277,7 +297,10 @@ export default function SupportersPage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {benefits.platinum.map((benefit, index) => (
-                <div key={index} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <div
+                  key={index}
+                  className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                >
                   <div className="h-2 bg-gradient-to-r from-yellow-400 to-yellow-600"></div>
                   <div className="relative h-48 bg-gray-100">
                     <Image
@@ -291,9 +314,7 @@ export default function SupportersPage() {
                     <h4 className="text-xl font-bold text-gray-900 mb-3">
                       {benefit.title}
                     </h4>
-                    <p className="text-gray-600">
-                      {benefit.description}
-                    </p>
+                    <p className="text-gray-600">{benefit.description}</p>
                   </div>
                 </div>
               ))}
