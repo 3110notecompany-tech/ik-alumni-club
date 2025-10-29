@@ -87,6 +87,7 @@ export default async function RootLayout({
   const headersList = await headers();
   const pathname = headersList.get("x-pathname") || "";
   const isAdminPage = pathname.includes("/admin");
+  const isSupportersPage = pathname.includes("/supporters");
 
   return (
     <html lang={locale}>
@@ -95,9 +96,9 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider messages={messages}>
           <NuqsAdapter>
-            {!isAdminPage && <Header />}
+            {!isAdminPage && !isSupportersPage && <Header />}
             {children}
-            {!isAdminPage && <Footer />}
+            {!isAdminPage && !isSupportersPage && <Footer />}
             <Toaster />
           </NuqsAdapter>
         </NextIntlClientProvider>
