@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "../globals.css";
-import { Header } from "@/components/header/header";
 import { getBaseURL } from "@/lib/get-base-url";
 import { Toaster } from "sonner";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
@@ -10,8 +9,6 @@ import { routing } from "@/app/web/i18n/routing";
 import { setLocale } from "@/app/web/i18n/set-locale";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import { Footer } from "@/components/footer/footer";
-import { headers } from "next/headers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -84,9 +81,6 @@ export default async function RootLayout({
 }>) {
   const locale = await setLocale(params);
   const messages = await getMessages();
-  const headersList = await headers();
-  const pathname = headersList.get("x-pathname") || "";
-  const isAdminPage = pathname.includes("/admin");
 
   return (
     <html lang={locale}>
@@ -95,9 +89,7 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider messages={messages}>
           <NuqsAdapter>
-            {!isAdminPage && <Header />}
             {children}
-            {!isAdminPage && <Footer />}
             <Toaster />
           </NuqsAdapter>
         </NextIntlClientProvider>

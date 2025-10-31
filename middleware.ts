@@ -35,11 +35,8 @@ export async function middleware(request: NextRequest) {
 		return NextResponse.redirect(new URL("/login", request.url));
 	}
 
-	// 国際化ミドルウェアを実行し、pathnameをヘッダーに追加
-	const response = intlMiddleware(request);
-	response.headers.set("x-pathname", pathnameWithoutLocale);
-
-	return response;
+	// 国際化ミドルウェアを実行
+	return intlMiddleware(request);
 }
 
 export const config = {
