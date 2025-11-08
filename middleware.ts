@@ -3,7 +3,15 @@ import { getSessionCookie } from "better-auth/cookies";
 import createIntlMiddleware from "next-intl/middleware";
 import { routing } from "./app/web/i18n/routing";
 
-const publicRoutes = ["/login", "/signup", "/", "/information"];
+const publicRoutes = [
+  "/login",
+  "/signup",
+  "/",
+  "/information",
+  "/register/terms",
+  "/register/plan",
+  "/register/auth",
+];
 const adminRoutes = ["/admin/login"]; // 管理者ログインページは認証不要
 
 const intlMiddleware = createIntlMiddleware(routing);
