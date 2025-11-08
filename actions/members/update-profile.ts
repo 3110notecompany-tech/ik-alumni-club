@@ -1,6 +1,6 @@
 "use server";
 
-import { db } from "@/db/drizzle";
+import { db } from "@/db";
 import { members } from "@/db/schemas/member";
 import { eq } from "drizzle-orm";
 import { verifySession } from "@/lib/session";

@@ -57,7 +57,7 @@ const memberPlansData = [
     plan_name: 'Platinum Individual Membership',
     display_name: 'プラチナ個人会員',
     description: 'プレミアム個人会員プランです。全コンテンツにアクセスでき、特別な特典が付与されます。',
-    price: '8000.00',
+    price: '30000.00',
     hierarchy_level: 3,
     is_business_plan: false,
     features: JSON.stringify([
@@ -74,7 +74,7 @@ const memberPlansData = [
     plan_name: 'Platinum Business Membership',
     display_name: 'プラチナ法人会員',
     description: 'プレミアム法人会員プランです。全コンテンツと最高レベルの特典をご利用いただけます。',
-    price: '20000.00',
+    price: '30000.00',
     hierarchy_level: 3,
     is_business_plan: true,
     features: JSON.stringify([

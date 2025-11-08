@@ -4,6 +4,7 @@ import postgres from 'postgres';
 import * as authSchema from './schemas/auth';
 import * as petSchemas from './schemas/pet';
 import * as memberSchema from './schemas/member';
+import * as memberPlanSchema from './schemas/member-plans';
 import * as informationSchema from './schemas/informations';
 import * as scheduleSchema from './schemas/schedules';
 import * as videoSchema from './schemas/videos';
@@ -19,6 +20,7 @@ export const db = drizzle({
         ...authSchema,
         ...petSchemas,
         ...memberSchema,
+        ...memberPlanSchema,
         ...informationSchema,
         ...scheduleSchema,
         ...videoSchema,
