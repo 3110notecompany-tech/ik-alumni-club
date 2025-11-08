@@ -128,7 +128,7 @@ const parseDataUrl = (dataUrl: string): ParsedData => {
       extension,
       blob: Buffer.from(base64, "base64"),
     };
-  } catch (error) {
+  } catch {
     throw new Error("Failed to decode base64 data");
   }
 };
