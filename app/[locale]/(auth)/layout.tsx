@@ -1,3 +1,5 @@
+import { RegistrationProvider } from "@/contexts/RegistrationContext";
+
 export default function AuthLayout({
   children,
 }: {
@@ -5,5 +7,5 @@ export default function AuthLayout({
 }) {
   // 認証画面はヘッダー・フッターなしで、
   // ページ内で独自のレイアウトを実装する
-  return <>{children}</>;
+  return <RegistrationProvider>{children}</RegistrationProvider>;
 }
