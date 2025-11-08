@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AccountForm } from "@/components/account-form";
+import { MemberPlan } from "@/types/member-plan";
 
 export default async function EditAccountPage({
   params,
@@ -12,7 +13,7 @@ export default async function EditAccountPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const [account, memberPlans] = await Promise.all([
+  const [account, memberPlansRaw] = await Promise.all([
     getAccountById(id),
     getAllMemberPlans(),
   ]);
@@ -20,6 +21,21 @@ export default async function EditAccountPage({
   if (!account) {
     notFound();
   }
+
+  // 型変換: features を string[] | null に変換
+  const memberPlans: MemberPlan[] = memberPlansRaw.map((plan) => ({
+    ...plan,
+    features: plan.features as string[] | null,
+  }));
+
+  // account.plan も型変換
+  const accountWithTypedPlan = {
+    ...account,
+    plan: account.plan ? {
+      ...account.plan,
+      features: account.plan.features as string[] | null,
+    } : null,
+  };
 
   return (
     <div className="container max-w-3xl py-10">
@@ -34,7 +50,7 @@ export default async function EditAccountPage({
         <p className="text-muted-foreground">会員情報を編集します</p>
       </div>
 
-      <AccountForm account={account} memberPlans={memberPlans} />
+      <AccountForm account={accountWithTypedPlan} memberPlans={memberPlans} />
     </div>
   );
 }

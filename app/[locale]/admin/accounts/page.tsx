@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { getAllAccounts } from "@/data/account";
-import { Plus } from "lucide-react";
 import Link from "next/link";
 import {
   Table,
@@ -86,7 +85,7 @@ export default async function AdminAccountsPage() {
                     {account.plan ? account.plan.displayName : "未設定"}
                   </TableCell>
                   <TableCell>{getRoleBadge(account.role)}</TableCell>
-                  <TableCell>{getStatusBadge(account.status)}</TableCell>
+                  <TableCell>{getStatusBadge(account.status || "pending_profile")}</TableCell>
                   <TableCell>
                     {new Date(account.createdAt).toLocaleDateString("ja-JP")}
                   </TableCell>

@@ -218,7 +218,7 @@ export default async function AccountDetailPage({
               <div className="text-sm font-medium text-muted-foreground">
                 ステータス
               </div>
-              <div className="col-span-2">{getStatusBadge(account.status)}</div>
+              <div className="col-span-2">{getStatusBadge(account.status || "pending_profile")}</div>
             </div>
             <div className="grid grid-cols-3 gap-4">
               <div className="text-sm font-medium text-muted-foreground">

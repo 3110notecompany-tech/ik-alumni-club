@@ -32,7 +32,7 @@ export function AccountForm({
   account,
   memberPlans,
 }: {
-  account: Member & { user: any; plan: MemberPlan | null };
+  account: Member & { user: { id: string; name: string; email: string; emailVerified: boolean }; plan: MemberPlan | null };
   memberPlans: MemberPlan[];
 }) {
   const router = useRouter();
