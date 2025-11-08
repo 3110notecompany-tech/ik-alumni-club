@@ -67,11 +67,7 @@ export function PlanSelectionForm({ plans }: PlanSelectionFormProps) {
                       className="grid gap-4 md:grid-cols-2"
                     >
                       {plans.map((plan) => {
-                        const features = plan.features
-                          ? (typeof plan.features === 'string'
-                              ? JSON.parse(plan.features)
-                              : plan.features)
-                          : [];
+                        const features: string[] = plan.features || [];
 
                         return (
                           <div key={plan.id}>

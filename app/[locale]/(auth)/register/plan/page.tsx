@@ -1,6 +1,7 @@
 import { setLocale } from "@/app/web/i18n/set-locale";
 import { PlanSelectionForm } from "@/components/register/plan-selection-form";
 import { getMemberPlans } from "@/actions/member-plans/get-member-plans";
+import type { MemberPlan } from "@/types/member-plan";
 
 export default async function PlanPage({
   params,
@@ -10,7 +11,7 @@ export default async function PlanPage({
   await setLocale(params);
 
   const result = await getMemberPlans();
-  const plans = result.success ? result.data : [];
+  const plans: MemberPlan[] = result.success && result.data ? result.data : [];
 
   return (
     <div className="bg-muted flex min-h-svh flex-col items-center justify-center p-6 md:p-10">

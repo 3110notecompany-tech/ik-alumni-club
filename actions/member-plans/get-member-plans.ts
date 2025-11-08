@@ -3,6 +3,7 @@
 import { db } from "@/db";
 import { memberPlans } from "@/db/schemas/member-plans";
 import { eq } from "drizzle-orm";
+import type { MemberPlan } from "@/types/member-plan";
 
 /**
  * 有効な会員プラン一覧を取得
@@ -15,7 +16,13 @@ export async function getMemberPlans() {
       .where(eq(memberPlans.isActive, true))
       .orderBy(memberPlans.hierarchyLevel, memberPlans.isBusinessPlan);
 
-    return { success: true, data: plans };
+    // JSONBフィールドを適切な型に変換
+    const typedPlans: MemberPlan[] = plans.map(plan => ({
+      ...plan,
+      features: plan.features ? (typeof plan.features === 'string' ? JSON.parse(plan.features) : plan.features) : null,
+    }));
+
+    return { success: true, data: typedPlans };
   } catch (error) {
     console.error("Failed to get member plans:", error);
     return { success: false, error: "プラン情報の取得に失敗しました" };

@@ -12,7 +12,7 @@ export default async function ProfileCompletePage({
 
   const memberResult = await getCurrentMember();
 
-  if (!memberResult.success) {
+  if (!memberResult.success || !memberResult.data) {
     redirect("/mypage");
   }
 

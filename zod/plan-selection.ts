@@ -4,10 +4,12 @@ import { z } from "zod";
  * プラン選択フォームのバリデーションスキーマ
  */
 export const planSelectionFormSchema = z.object({
-  planId: z.number({
-    required_error: "プランを選択してください",
-    invalid_type_error: "有効なプランを選択してください",
-  }).int("有効なプランを選択してください").positive("有効なプランを選択してください"),
+  planId: z
+    .number({
+      message: "有効なプランを選択してください",
+    })
+    .int("有効なプランを選択してください")
+    .positive("有効なプランを選択してください"),
 });
 
 export type PlanSelectionFormData = z.infer<typeof planSelectionFormSchema>;

@@ -1,6 +1,13 @@
 import { memberPlans } from "@/db/schemas/member-plans";
 
-export type MemberPlan = typeof memberPlans.$inferSelect;
+// 基本的な推論型
+type MemberPlanInferred = typeof memberPlans.$inferSelect;
+
+// featuresの型を明示的に定義
+export type MemberPlan = Omit<MemberPlanInferred, 'features'> & {
+  features: string[] | null;
+};
+
 export type NewMemberPlan = typeof memberPlans.$inferInsert;
 
 // プランコードの型
@@ -15,6 +22,6 @@ export type MemberPlanDisplay = {
   price: string;
   hierarchyLevel: number;
   isBusinessPlan: boolean;
-  features: any;
+  features: string[] | null;
   color: string | null;
 };

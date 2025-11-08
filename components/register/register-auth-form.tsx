@@ -66,7 +66,7 @@ export function RegisterAuthForm({
       const memberResult = await createMemberAfterSignup(
         userId,
         data.email,
-        selectedPlanId
+        selectedPlanId ?? undefined
       );
 
       if (!memberResult.success) {
