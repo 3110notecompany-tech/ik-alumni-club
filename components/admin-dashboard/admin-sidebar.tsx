@@ -33,7 +33,7 @@ const menuItems = [
   {
     title: "会員管理",
     icon: Users,
-    url: "#",
+    url: "/admin/accounts",
   },
   {
     title: "お知らせ管理",

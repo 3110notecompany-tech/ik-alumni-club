@@ -17,8 +17,8 @@ export default async function MypagePage({
   const member = memberResult.success ? memberResult.data : null;
 
   return (
-    <div className="container py-6">
-      <h1 className="text-2xl font-bold mb-6">マイページ</h1>
+    <div className="container py-4 md:py-6">
+      <h1 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">マイページ</h1>
 
       {/* プロフィール未完成の場合は促進バナーを表示 */}
       {member && member.status === "pending_profile" && (

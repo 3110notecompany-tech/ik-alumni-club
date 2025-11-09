@@ -16,7 +16,7 @@ export default async function Home({
 
   return (
     <div className="font-sans max-w-full">
-      <div className="relative w-full h-screen -mt-35 mb-32">
+      <div className="relative w-full h-[50vh] sm:h-[70vh] md:h-screen -mt-20 md:-mt-35 mb-16 md:mb-32">
         <Image
           src={heroBg}
           alt="Hero Background"
@@ -25,17 +25,17 @@ export default async function Home({
           priority
         />
       </div>
-      <main className="container mx-auto px-4">
-        <div className="mb-32">
+      <main className="container mx-auto">
+        <div className="mb-16 md:mb-32">
           <InformationContents />
         </div>
-        <div className="mb-32">
+        <div className="mb-16 md:mb-32">
           <ScheduleContents />
         </div>
-        <div className="mb-32">
+        <div className="mb-16 md:mb-32">
           <VideoContents />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-15 mb-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-15 mb-16 md:mb-32">
           <BlogContents />
           <NewsLettersContents />
         </div>

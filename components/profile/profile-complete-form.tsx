@@ -258,12 +258,13 @@ export function ProfileCompleteForm({ member }: ProfileCompleteFormProps) {
               <Button
                 type="button"
                 variant="outline"
+                className="min-h-11"
                 onClick={() => router.push("/mypage")}
                 disabled={isLoading}
               >
                 後で入力する
               </Button>
-              <Button type="submit" disabled={isLoading}>
+              <Button type="submit" className="min-h-11" disabled={isLoading}>
                 {isLoading ? "登録中..." : "登録する"}
               </Button>
             </div>

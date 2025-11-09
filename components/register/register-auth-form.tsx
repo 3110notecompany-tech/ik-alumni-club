@@ -162,14 +162,14 @@ export function RegisterAuthForm({
                   <Button
                     type="button"
                     variant="outline"
-                    className="flex-1"
+                    className="flex-1 min-h-11"
                     onClick={() => router.push("/register/plan")}
                   >
                     戻る
                   </Button>
                   <Button
                     type="submit"
-                    className="flex-1"
+                    className="flex-1 min-h-11"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? "登録中..." : "登録"}
