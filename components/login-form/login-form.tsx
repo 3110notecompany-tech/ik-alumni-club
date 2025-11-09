@@ -81,7 +81,7 @@ export function LoginForm({
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <Button type="submit" className="w-full" disabled={isLoading}>
+              <Button type="submit" className="w-full min-h-11" disabled={isLoading}>
                 {isLoading ? "ログイン中..." : "ログイン"}
               </Button>
               <div className="text-center text-sm">

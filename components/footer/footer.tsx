@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
 import xBlack from "../sns-icon/x-black.png";
 import instagramBlack from "../sns-icon/instagram-black.png";
@@ -7,33 +8,46 @@ import youtubeBlack from "../sns-icon/youtube-black.png";
 import tiktokBlack from "../sns-icon/tiktok-black.png";
 
 export function Footer() {
+  const links = [
+    { label: "ホーム", href: "/" },
+    { label: "お知らせ", href: "/information" },
+    { label: "スケジュール", href: "/events" },
+    { label: "動画", href: "/videos" },
+    { label: "ブログ", href: "/blog" },
+    { label: "会報", href: "/newsletters" },
+    { label: "お問い合わせ", href: "/contact" },
+    { label: "利用規約", href: "/terms" },
+    { label: "プライバシーポリシー", href: "/privacy" },
+    { label: "特定商取引法", href: "/legal" },
+  ];
 
   return (
-    <footer className="w-full border-t bg-background mt-32">
-      <div className="pt-[50px]">
-        <div className="flex gap-4 items-center justify-center max-w-full px-0 mb-[32px]">
-          <Image src={xBlack} alt="" height={24} />
-          <Image src={instagramBlack} alt="" height={24} />
-          <Image src={youtubeBlack} alt="" height={24} />
-          <Image src={tiktokBlack} alt="" height={24} />
+    <footer className="w-full border-t bg-background mt-16 md:mt-32">
+      <div className="pt-8 md:pt-[50px]">
+        {/* SNSアイコン */}
+        <div className="flex gap-4 items-center justify-center mb-6 md:mb-8">
+          <Image src={xBlack} alt="X (Twitter)" height={24} />
+          <Image src={instagramBlack} alt="Instagram" height={24} />
+          <Image src={youtubeBlack} alt="YouTube" height={24} />
+          <Image src={tiktokBlack} alt="TikTok" height={24} />
         </div>
-        <div className="flex flex-wrap gap-[48px] items-center justify-center max-w-full px-[92px] mb-[50px]">
-          <div className="header-text whitespace-nowrap">お支払い</div>
-          <div className="header-text whitespace-nowrap">お支払い</div>
-          <div className="header-text whitespace-nowrap">お支払い</div>
-          <div className="header-text whitespace-nowrap">お支払い</div>
-          <div className="header-text whitespace-nowrap">お支払い</div>
-          <div className="header-text whitespace-nowrap">お支払い</div>
-          <div className="header-text whitespace-nowrap">お支払い</div>
-          <div className="header-text whitespace-nowrap">お支払い</div>
-          <div className="header-text whitespace-nowrap">お支払い</div>
-          <div className="header-text whitespace-nowrap">お支払い</div>
-          <div className="header-text whitespace-nowrap">お支払い</div>
-          <div className="header-text whitespace-nowrap">お支払い</div>
-          <div className="header-text whitespace-nowrap">お支払い</div>
+
+        {/* リンク */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-wrap gap-4 md:gap-12 items-center justify-center px-4 md:px-[92px] mb-8 md:mb-[50px]">
+          {links.map((link, index) => (
+            <Link
+              key={index}
+              href={link.href}
+              className="header-text whitespace-nowrap hover:underline transition-colors"
+            >
+              {link.label}
+            </Link>
+          ))}
         </div>
-        <div className="flex flex-col md:flex-row gap-4 items-center justify-center max-w-full">
-          <div className="header-text whitespace-nowrap py-[16px]">
+
+        {/* コピーライト */}
+        <div className="flex justify-center pb-4 md:pb-0">
+          <div className="header-text py-4">
             ©️IK ALUMNI CGT
           </div>
         </div>

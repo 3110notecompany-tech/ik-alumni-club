@@ -131,11 +131,12 @@ export function TermsAgreementForm() {
               <Button
                 type="button"
                 variant="outline"
+                className="min-h-11"
                 onClick={() => router.push("/signup")}
               >
                 戻る
               </Button>
-              <Button type="submit" disabled={isLoading}>
+              <Button type="submit" className="min-h-11" disabled={isLoading}>
                 {isLoading ? "処理中..." : "同意して次へ"}
               </Button>
             </CardFooter>
