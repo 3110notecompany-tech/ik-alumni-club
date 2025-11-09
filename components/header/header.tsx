@@ -11,7 +11,7 @@ import youtubeBlack from "../sns-icon/youtube-black.png";
 import tiktokBlack from "../sns-icon/tiktok-black.png";
 
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import { useTranslations } from "next-intl";
 import { authClient } from "@/lib/auth-client";
@@ -50,6 +50,7 @@ export function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px]">
+              <SheetTitle className="sr-only">メニュー</SheetTitle>
               <nav className="flex flex-col gap-4 mt-8">
                 <Link href="/" className="text-base font-medium hover:underline transition-colors">
                   {t("home")}
