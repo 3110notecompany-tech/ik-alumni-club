@@ -58,16 +58,16 @@ export function Header() {
                 <Link href="/information" className="text-base font-medium hover:underline transition-colors">
                   {t("information")}
                 </Link>
-                <Link href="/events" className="text-base font-medium hover:underline transition-colors">
+                <Link href="/schedule" className="text-base font-medium hover:underline transition-colors">
                   {t("schedule")}
                 </Link>
-                <Link href="/videos" className="text-base font-medium hover:underline transition-colors">
+                <Link href="/video" className="text-base font-medium hover:underline transition-colors">
                   {t("video")}
                 </Link>
                 <Link href="/blog" className="text-base font-medium hover:underline transition-colors">
                   {t("blog")}
                 </Link>
-                <Link href="/newsletters" className="text-base font-medium hover:underline transition-colors">
+                <Link href="/newsletter" className="text-base font-medium hover:underline transition-colors">
                   {t("newsletters")}
                 </Link>
                 <Link href="/contact" className="text-base font-medium hover:underline transition-colors">
@@ -132,16 +132,16 @@ export function Header() {
             <Link href="/information" className="header-text">
               {t("information")}
             </Link>
-            <Link href="/events" className="header-text">
+            <Link href="/schedule" className="header-text">
               {t("schedule")}
             </Link>
-            <Link href="/videos" className="header-text">
+            <Link href="/video" className="header-text">
               {t("video")}
             </Link>
             <Link href="/blog" className="header-text">
               {t("blog")}
             </Link>
-            <Link href="/newsletters" className="header-text">
+            <Link href="/newsletter" className="header-text">
               {t("newsletters")}
             </Link>
             <Link href="/contact" className="header-text">

@@ -1,21 +1,21 @@
 import { setLocale } from "@/app/web/i18n/set-locale";
-import { InformationList } from "@/components/information/list";
-import { getInformations } from "@/data/information";
+import { BlogList } from "@/components/blog/list";
+import { getPublishedBlogs } from "@/data/blog";
 import { getTranslations } from "next-intl/server";
 
-export default async function InformationPage({
+export default async function BlogPage({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }) {
   await setLocale(params);
   const t = await getTranslations("Contents");
-  const items = await getInformations();
+  const items = await getPublishedBlogs();
 
   return (
     <div className="container max-w-full items-center justify-between pt-10 pb-32">
-      <h1 className="main-text mb-10">{t("information")}</h1>
-      <InformationList items={items} />
+      <h1 className="main-text mb-10">{t("blog")}</h1>
+      <BlogList items={items} />
     </div>
   );
 }

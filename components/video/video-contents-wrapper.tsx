@@ -7,6 +7,7 @@ import { CarouselIndicator } from "./carousel-indicator";
 import { useState } from "react";
 
 interface VideoItem {
+  id?: string;
   videoUrl: string;
   title: string;
 }
@@ -29,7 +30,7 @@ export function VideoContentsWrapper({ title, items }: VideoContentsWrapperProps
 
   return (
     <div className="flex flex-col">
-      <ContentsHeader title={title} />
+      <ContentsHeader title={title} viewAllHref="/video" />
       {items.length === 0 ? (
         <div className="mt-[60px]">
           <p>動画はありません</p>
@@ -40,6 +41,7 @@ export function VideoContentsWrapper({ title, items }: VideoContentsWrapperProps
             <VideoCard
               videoUrl={items[currentIndex].videoUrl}
               title={items[currentIndex].title}
+              videoId={items[currentIndex].id}
             />
           </Carousel>
           <CarouselIndicator

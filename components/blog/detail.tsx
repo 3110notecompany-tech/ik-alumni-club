@@ -1,0 +1,45 @@
+import Image from "next/image";
+
+type Blog = {
+  id: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  thumbnailUrl: string | null;
+  published: boolean;
+  authorName: string | null;
+  viewCount: number;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export function BlogDetail({ item }: { item: Blog }) {
+  return (
+    <article className="flex flex-col gap-8 max-w-4xl mx-auto">
+      <header>
+        <h1 className="main-text mb-4">{item.title}</h1>
+        <div className="flex items-center gap-4 text-sm text-gray-600">
+          {item.authorName && <span>著者: {item.authorName}</span>}
+          <span>{new Date(item.createdAt).toLocaleDateString("ja-JP")}</span>
+          <span>閲覧数: {item.viewCount}</span>
+        </div>
+      </header>
+
+      {item.thumbnailUrl && (
+        <div className="relative w-full aspect-video rounded-lg overflow-hidden">
+          <Image
+            src={item.thumbnailUrl}
+            alt={item.title}
+            fill
+            className="object-cover"
+          />
+        </div>
+      )}
+
+      <div className="prose prose-lg max-w-none">
+        <p className="text-xl text-gray-700 mb-8">{item.excerpt}</p>
+        <div className="whitespace-pre-wrap">{item.content}</div>
+      </div>
+    </article>
+  );
+}
