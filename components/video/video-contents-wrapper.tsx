@@ -41,7 +41,6 @@ export function VideoContentsWrapper({ title, items }: VideoContentsWrapperProps
             <VideoCard
               videoUrl={items[currentIndex].videoUrl}
               title={items[currentIndex].title}
-              videoId={items[currentIndex].id}
             />
           </Carousel>
           <CarouselIndicator
