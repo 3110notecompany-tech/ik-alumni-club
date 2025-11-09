@@ -12,15 +12,16 @@ export function VideoCard({ videoUrl, title }: VideoCardProps) {
   };
 
   return (
-    <div className="flex flex-col items-start gap-[30px]">
-      <iframe
-        width="700"
-        height="404"
-        src={getYouTubeEmbedUrl(videoUrl)}
-        title={title}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      />
+    <div className="flex flex-col items-start gap-[30px] w-full max-w-full">
+      <div className="relative w-full aspect-video max-w-[700px]">
+        <iframe
+          className="absolute inset-0 w-full h-full"
+          src={getYouTubeEmbedUrl(videoUrl)}
+          title={title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </div>
       <div>{title}</div>
     </div>
   );
