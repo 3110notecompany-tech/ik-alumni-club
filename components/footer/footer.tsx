@@ -11,10 +11,10 @@ export function Footer() {
   const links = [
     { label: "ホーム", href: "/" },
     { label: "お知らせ", href: "/information" },
-    { label: "スケジュール", href: "/events" },
-    { label: "動画", href: "/videos" },
+    { label: "スケジュール", href: "/schedule" },
+    { label: "動画", href: "/video" },
     { label: "ブログ", href: "/blog" },
-    { label: "会報", href: "/newsletters" },
+    { label: "会報", href: "/newsletter" },
     { label: "お問い合わせ", href: "/contact" },
     { label: "利用規約", href: "/terms" },
     { label: "プライバシーポリシー", href: "/privacy" },

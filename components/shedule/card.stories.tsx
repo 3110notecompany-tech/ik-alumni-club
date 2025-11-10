@@ -12,7 +12,9 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    title: "title",
-    date: "2025-10-14"
+    title: "柏まつり",
+    month: "10",
+    day: "14",
+    weekDay: "tue"
   }
 };

@@ -1,28 +1,23 @@
+"use client";
+
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
-function formatCardDate(date: string | number) {
-  const dateObj = new Date(date);
-  const month = String(dateObj.getMonth() + 1).padStart(2, "0");
-  const day = String(dateObj.getDate()).padStart(2, "0");
-  const weekDays = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
-  const weekDay = weekDays[dateObj.getDay()];
-
-  return { month, day, weekDay };
-}
-
 export function ScheduleContentsCard({
   title,
-  date,
+  month,
+  day,
+  weekDay,
   imageUrl,
   linkUrl,
 }: {
   title: string;
-  date: string | number;
+  month: string;
+  day: string;
+  weekDay: string;
   imageUrl?: string | null;
   linkUrl?: string | null;
 }) {
-  const { month, day, weekDay } = formatCardDate(date);
   const t = useTranslations("Contents");
 
   return (
@@ -54,14 +49,16 @@ export function ScheduleContentsCard({
           )}
         </div>
         {linkUrl ? (
-          <a
-            href={linkUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link-title hover:underline"
+          <div
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              window.open(linkUrl, "_blank", "noopener,noreferrer");
+            }}
+            className="link-title hover:underline cursor-pointer"
           >
             {t("click_here_for_details")}
-          </a>
+          </div>
         ) : (
           <div className="link-title">{t("click_here_for_details")}</div>
         )}
