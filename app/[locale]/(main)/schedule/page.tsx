@@ -3,6 +3,8 @@ import { ScheduleList } from "@/components/shedule/list";
 import { getSchedules } from "@/data/schedule";
 import { getTranslations } from "next-intl/server";
 
+export const dynamic = 'force-dynamic';
+
 export default async function SchedulePage({
   params,
 }: {
