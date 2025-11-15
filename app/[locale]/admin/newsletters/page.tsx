@@ -11,7 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Eye, Calendar } from "lucide-react";
+import { Eye, Calendar, Lock } from "lucide-react";
 
 export default async function AdminNewslettersPage() {
   const newsletters = await getAllNewsletters();
@@ -60,11 +60,17 @@ export default async function AdminNewslettersPage() {
                     </CardTitle>
                     <CardDescription>{newsletter.excerpt}</CardDescription>
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 flex-wrap">
                     {newsletter.published ? (
                       <Badge variant="default">公開中</Badge>
                     ) : (
                       <Badge variant="secondary">下書き</Badge>
+                    )}
+                    {newsletter.isMemberOnly && (
+                      <Badge variant="outline" className="flex items-center gap-1 border-amber-500 text-amber-700">
+                        <Lock className="h-3 w-3" />
+                        会員限定
+                      </Badge>
                     )}
                     {newsletter.category && (
                       <Badge variant="outline">
