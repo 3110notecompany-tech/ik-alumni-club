@@ -3,6 +3,8 @@ import { BlogList } from "@/components/blog/list";
 import { getPublishedBlogs } from "@/data/blog";
 import { getTranslations } from "next-intl/server";
 
+export const dynamic = 'force-dynamic';
+
 export default async function BlogPage({
   params,
 }: {

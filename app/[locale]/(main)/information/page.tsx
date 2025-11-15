@@ -3,6 +3,8 @@ import { InformationList } from "@/components/information/list";
 import { getInformations } from "@/data/information";
 import { getTranslations } from "next-intl/server";
 
+export const dynamic = 'force-dynamic';
+
 export default async function InformationPage({
   params,
 }: {

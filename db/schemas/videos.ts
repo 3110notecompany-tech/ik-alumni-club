@@ -10,6 +10,7 @@ export const videos = pgTable("videos", {
   videoUrl: text("video_url").notNull(),
   thumbnailUrl: text("thumbnail_url"),
   published: boolean("published").notNull().default(false),
+  isMemberOnly: boolean("is_member_only").notNull().default(false),
   authorId: text("author_id").references(() => users.id, { onDelete: "set null" }),
   authorName: text("author_name"),
   viewCount: integer("view_count").notNull().default(0),

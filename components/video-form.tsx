@@ -35,6 +35,7 @@ export function VideoForm({
           videoUrl: defaultValues.videoUrl,
           thumbnailUrl: defaultValues.thumbnailUrl ?? "",
           published: defaultValues.published,
+          isMemberOnly: defaultValues.isMemberOnly,
           viewCount: defaultValues.viewCount,
         }
       : {
@@ -43,6 +44,7 @@ export function VideoForm({
           videoUrl: "",
           thumbnailUrl: "",
           published: false,
+          isMemberOnly: false,
           viewCount: 0,
         },
   });
@@ -172,6 +174,27 @@ export function VideoForm({
                 <FormLabel className="text-base">公開状態</FormLabel>
                 <FormDescription>
                   公開するとユーザーに表示されます
+                </FormDescription>
+              </div>
+              <FormControl>
+                <Switch
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="isMemberOnly"
+          render={({ field }) => (
+            <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
+              <div className="space-y-0.5">
+                <FormLabel className="text-base">会員限定</FormLabel>
+                <FormDescription>
+                  ONにすると会員のみ閲覧可能になります
                 </FormDescription>
               </div>
               <FormControl>

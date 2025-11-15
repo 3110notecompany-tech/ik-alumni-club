@@ -25,6 +25,7 @@ export const newsletters = pgTable("newsletters", {
 
   // 公開管理
   published: boolean("published").notNull().default(false),
+  isMemberOnly: boolean("is_member_only").notNull().default(true), // ニュースレターはデフォルトで会員限定
   publishedAt: timestamp("published_at"),
 
   // タイムスタンプ
