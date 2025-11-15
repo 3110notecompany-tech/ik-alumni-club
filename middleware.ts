@@ -8,6 +8,7 @@ const publicRoutes = [
   "/signup",
   "/",
   "/information",
+  "/supporters",
   "/register/terms",
   "/register/plan",
   "/register/auth",

@@ -478,7 +478,7 @@ export default function SupportersPage() {
             IK ALUMNI CGTを一緒に応援しませんか？
           </p>
           <Link
-            href="/register"
+            href="/register/terms"
             className="inline-block px-16 py-5 bg-white text-indigo-600 font-bold rounded-full hover:bg-gray-100 transition-colors duration-300 text-xl shadow-2xl transform hover:scale-105"
           >
             登録手続きに進む

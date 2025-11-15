@@ -12,6 +12,7 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "@/component
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Check } from "lucide-react";
 import type { MemberPlan } from "@/types/member-plan";
+import { RegistrationProgress } from "./registration-progress";
 
 type PlanSelectionFormProps = {
   plans: MemberPlan[];
@@ -45,7 +46,9 @@ export function PlanSelectionForm({ plans }: PlanSelectionFormProps) {
   };
 
   return (
-    <Card>
+    <>
+      <RegistrationProgress currentStep={2} className="mb-8" />
+      <Card>
       <CardHeader>
         <CardTitle>会員プラン選択</CardTitle>
         <CardDescription>
@@ -145,5 +148,6 @@ export function PlanSelectionForm({ plans }: PlanSelectionFormProps) {
         </Form>
       </CardContent>
     </Card>
+    </>
   );
 }
