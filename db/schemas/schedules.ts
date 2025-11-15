@@ -12,6 +12,7 @@ export const schedules = pgTable("schedules", {
   linkUrl: text("link_url"),
   sortOrder: integer("sort_order").notNull().default(0),
   published: boolean("published").notNull().default(false),
+  isMemberOnly: boolean("is_member_only").notNull().default(false),
   authorId: text("author_id").references(() => users.id, { onDelete: "set null" }),
   authorName: text("author_name"),
   authorEmail: text("author_email"),

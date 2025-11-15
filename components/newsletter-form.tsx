@@ -53,6 +53,7 @@ export function NewsletterForm({
           pdfUrl: defaultValues.pdfUrl ?? "",
           category: defaultValues.category,
           published: defaultValues.published,
+          isMemberOnly: defaultValues.isMemberOnly ?? true,
         }
       : {
           issueNumber: nextIssueNumber || 1,
@@ -63,6 +64,7 @@ export function NewsletterForm({
           pdfUrl: "",
           category: "regular",
           published: false,
+          isMemberOnly: true,
         },
   });
 
@@ -258,6 +260,26 @@ export function NewsletterForm({
               <div className="space-y-0.5">
                 <FormLabel className="text-base">公開する</FormLabel>
                 <FormDescription>ONにすると会員に公開されます</FormDescription>
+              </div>
+              <FormControl>
+                <Switch
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+
+        {/* 会員限定フラグ */}
+        <FormField
+          control={form.control}
+          name="isMemberOnly"
+          render={({ field }) => (
+            <FormItem className="flex items-center justify-between rounded-lg border p-4">
+              <div className="space-y-0.5">
+                <FormLabel className="text-base">会員限定</FormLabel>
+                <FormDescription>ONにすると会員のみ閲覧可能になります</FormDescription>
               </div>
               <FormControl>
                 <Switch

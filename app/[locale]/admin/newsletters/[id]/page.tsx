@@ -106,6 +106,7 @@ export default async function EditNewsletterPage({
             pdfUrl: newsletter.pdfUrl || "",
             category: newsletter.category as "regular" | "special" | "extra" | undefined,
             published: newsletter.published,
+            isMemberOnly: newsletter.isMemberOnly,
           }}
         />
       </div>

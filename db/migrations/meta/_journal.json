@@ -64,6 +64,13 @@
       "when": 1762592913837,
       "tag": "0008_large_prism",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1763216154885,
+      "tag": "0009_sticky_cannonball",
+      "breakpoints": true
     }
   ]
 }
