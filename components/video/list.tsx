@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Lock } from "lucide-react";
 
 type Video = {
   id: string;
@@ -8,6 +9,7 @@ type Video = {
   videoUrl: string;
   thumbnailUrl: string | null;
   published: boolean;
+  isMemberOnly: boolean;
   authorName: string | null;
   viewCount: number;
 };
@@ -43,6 +45,12 @@ export function VideoList({ items }: { items: Video[] }) {
                   >
                     <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" />
                   </svg>
+                </div>
+              )}
+              {item.isMemberOnly && (
+                <div className="absolute top-2 right-2 bg-amber-500/90 text-white px-2 py-1 rounded-md text-xs font-medium flex items-center gap-1">
+                  <Lock className="h-3 w-3" />
+                  会員限定
                 </div>
               )}
             </div>
