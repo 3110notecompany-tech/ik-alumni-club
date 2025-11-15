@@ -24,6 +24,7 @@ import { SignupFormData } from "@/types/signup";
 import { toast } from "sonner";
 import { useRegistration } from "@/contexts/RegistrationContext";
 import { createMemberAfterSignup } from "@/actions/members/create-member";
+import { RegistrationProgress } from "./registration-progress";
 
 export function RegisterAuthForm({
   className,
@@ -81,7 +82,7 @@ export function RegisterAuthForm({
       resetRegistration();
 
       form.reset();
-      router.push("/dashboard");
+      router.push("/mypage");
     } catch (error) {
       toast.error("エラーが発生しました", {
         description:
@@ -97,6 +98,7 @@ export function RegisterAuthForm({
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
+      <RegistrationProgress currentStep={3} className="mb-8" />
       <Card className="overflow-hidden p-0">
         <CardContent className="grid p-0 md:grid-cols-2">
           <div className="p-6 md:p-8">

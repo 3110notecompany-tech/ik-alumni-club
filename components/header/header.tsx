@@ -113,7 +113,7 @@ export function Header() {
                 </>
               ) : (
                 <>
-                  <Link href="/signup" className="w-full">
+                  <Link href="/supporters" className="w-full">
                     <Button className="w-full min-h-11 bg-brand">
                       {t("joinUs")}
                     </Button>

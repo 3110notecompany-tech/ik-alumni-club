@@ -11,6 +11,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { RegistrationProgress } from "./registration-progress";
 
 export function TermsAgreementForm() {
   const router = useRouter();
@@ -59,14 +60,16 @@ export function TermsAgreementForm() {
   };
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>IK ALUMNI CGT supporter&apos;s CLUB 規約</CardTitle>
-        <CardDescription>
-          IK ALUMNI CGT supporter&apos;s CLUB の規約をお読みいただき、同意の上でご登録ください。
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
+    <>
+      <RegistrationProgress currentStep={1} className="mb-8" />
+      <Card>
+        <CardHeader>
+          <CardTitle>IK ALUMNI CGT supporter&apos;s CLUB 規約</CardTitle>
+          <CardDescription>
+            IK ALUMNI CGT supporter&apos;s CLUB の規約をお読みいただき、同意の上でご登録ください。
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
         <ScrollArea ref={scrollAreaRef} className="h-[400px] w-full rounded-md border p-4">
           <div className="space-y-4 text-sm">
             <section>
@@ -336,5 +339,6 @@ export function TermsAgreementForm() {
         </Form>
       </CardContent>
     </Card>
+    </>
   );
 }
