@@ -48,6 +48,7 @@ export default async function EditBlogPage({
             content: blog.content,
             thumbnailUrl: blog.thumbnailUrl || "",
             published: blog.published,
+            isMemberOnly: blog.isMemberOnly,
           }}
         />
       </div>

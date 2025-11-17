@@ -11,6 +11,7 @@ export const informations = pgTable("informations", {
   imageUrl: text("image_url"),
   url: text("url"),
   published: boolean("published").notNull().default(false),
+  isMemberOnly: boolean("is_member_only").notNull().default(false),
   createdBy: text("created_by").references(() => users.id, { onDelete: "set null" }),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")

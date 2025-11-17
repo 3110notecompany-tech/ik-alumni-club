@@ -3,6 +3,8 @@ import { VideoList } from "@/components/video/list";
 import { getVideos } from "@/data/video";
 import { getTranslations } from "next-intl/server";
 
+export const dynamic = 'force-dynamic';
+
 export default async function VideoPage({
   params,
 }: {

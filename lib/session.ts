@@ -98,3 +98,68 @@ export const canAccessContent = (
   // 例: Platinum(3) >= Business(2) >= Individual(1)
   return member.plan.hierarchyLevel >= requiredPlanLevel;
 }
+
+/**
+ * 現在のユーザーが会員限定コンテンツにアクセス可能かチェック
+ * セッションがない場合や会員でない場合は false を返す
+ */
+export const canAccessMemberContent = async (): Promise<boolean> => {
+  try {
+    const session = await auth.api.getSession({
+      headers: await headers(),
+    });
+
+    // セッションがない場合は非会員
+    if (!session) {
+      return false;
+    }
+
+    const userId = session.user.id;
+    const member = await db.query.members.findFirst({
+      where: eq(members.userId, userId),
+      with: {
+        plan: true,
+      },
+    });
+
+    // 会員情報がない、またはステータスがactiveでない場合はアクセス不可
+    if (!member || member.status !== "active") {
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    // エラーが発生した場合は安全側に倒してアクセス不可
+    console.error("Error checking member access:", error);
+    return false;
+  }
+}
+
+/**
+ * 現在のユーザーの会員情報を取得（オプショナル）
+ * セッションがない場合や会員でない場合は null を返す
+ */
+export const getCurrentMember = async (): Promise<MemberWithPlan | null> => {
+  try {
+    const session = await auth.api.getSession({
+      headers: await headers(),
+    });
+
+    if (!session) {
+      return null;
+    }
+
+    const userId = session.user.id;
+    const member = await db.query.members.findFirst({
+      where: eq(members.userId, userId),
+      with: {
+        plan: true,
+      },
+    });
+
+    return member as MemberWithPlan | null;
+  } catch (error) {
+    console.error("Error getting current member:", error);
+    return null;
+  }
+}

@@ -1,14 +1,22 @@
 import "server-only";
 import { db } from "@/db";
 import { newsletters } from "@/db/schemas/newsletters";
-import { eq, desc } from "drizzle-orm";
+import { eq, desc, and } from "drizzle-orm";
+import { canAccessMemberContent } from "@/lib/session";
 
 /**
  * 公開済みニュースレター一覧を取得(会員向け)
+ * 会員限定コンテンツは会員のみ閲覧可能
  */
 export const getPublishedNewsletters = async () => {
+  const isMember = await canAccessMemberContent();
+
   return db.query.newsletters.findMany({
-    where: eq(newsletters.published, true),
+    where: and(
+      eq(newsletters.published, true),
+      // 会員でない場合は会員限定コンテンツを除外
+      isMember ? undefined : eq(newsletters.isMemberOnly, false)
+    ),
     orderBy: [desc(newsletters.issueNumber)],
     with: {
       author: true,
@@ -54,10 +62,17 @@ export const getNewsletterByIssueNumber = async (issueNumber: number) => {
 
 /**
  * 最新のニュースレターを取得(ホーム画面用)
+ * 会員限定コンテンツは会員のみ閲覧可能
  */
 export const getLatestNewsletters = async (limit: number = 3) => {
+  const isMember = await canAccessMemberContent();
+
   return db.query.newsletters.findMany({
-    where: eq(newsletters.published, true),
+    where: and(
+      eq(newsletters.published, true),
+      // 会員でない場合は会員限定コンテンツを除外
+      isMember ? undefined : eq(newsletters.isMemberOnly, false)
+    ),
     orderBy: [desc(newsletters.issueNumber)],
     limit,
   });

@@ -11,7 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import { Calendar, Eye } from "lucide-react";
+import { Calendar, Eye, Lock } from "lucide-react";
 
 export function BlogCard({
   blog,
@@ -24,9 +24,17 @@ export function BlogCard({
     <Card className="flex flex-col">
       <CardHeader>
         <div className="flex items-center justify-between">
-          <Badge variant={blog.published ? "default" : "secondary"}>
-            {blog.published ? "公開" : "下書き"}
-          </Badge>
+          <div className="flex gap-2 flex-wrap">
+            <Badge variant={blog.published ? "default" : "secondary"}>
+              {blog.published ? "公開" : "下書き"}
+            </Badge>
+            {blog.isMemberOnly && (
+              <Badge variant="outline" className="flex items-center gap-1 border-amber-500 text-amber-700">
+                <Lock className="h-3 w-3" />
+                会員限定
+              </Badge>
+            )}
+          </div>
           <div className="flex items-center gap-3 text-sm text-muted-foreground">
             <div className="flex items-center">
               <Eye className="mr-1 h-4 w-4" />

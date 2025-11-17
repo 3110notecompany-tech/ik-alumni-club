@@ -3,6 +3,8 @@ import { NewsletterList } from "@/components/newsletters/list";
 import { getPublishedNewsletters } from "@/data/newsletter";
 import { getTranslations } from "next-intl/server";
 
+export const dynamic = 'force-dynamic';
+
 export default async function NewsletterPage({
   params,
 }: {
