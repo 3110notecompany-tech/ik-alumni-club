@@ -7,6 +7,8 @@ import Image from "next/image";
 import heroBg from "./hero-bg.jpg";
 import { VideoContents } from "@/components/video/content";
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home({
   params,
 }: {
