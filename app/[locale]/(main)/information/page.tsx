@@ -15,7 +15,7 @@ export default async function InformationPage({
   const items = await getInformations();
 
   return (
-    <div className="container max-w-full items-center justify-between pt-10 pb-32">
+    <div className="container max-w-full items-center justify-between pt-10 pb-32 px-4">
       <h1 className="main-text mb-10">{t("information")}</h1>
       <InformationList items={items} />
     </div>
