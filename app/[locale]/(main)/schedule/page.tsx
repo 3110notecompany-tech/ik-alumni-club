@@ -15,7 +15,7 @@ export default async function SchedulePage({
   const items = await getSchedules();
 
   return (
-    <div className="container max-w-full items-center justify-between pt-10 pb-32 px-4">
+    <div className="container mx-auto px-4 pt-10 pb-32">
       <h1 className="main-text mb-10">{t("schedule")}</h1>
       <ScheduleList items={items} />
     </div>
