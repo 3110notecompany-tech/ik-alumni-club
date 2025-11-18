@@ -10,7 +10,7 @@ export async function ScheduleContents() {
   return (
     <div className="flex flex-col">
       <ContentsHeader title="SCHEDULE" viewAllHref="/schedule" />
-      <div className="flex flex-col gap-[30px] mt-[60px]">
+      <div className="flex flex-col md:flex-row gap-[30px] mt-[60px]">
         {items.length === 0 ? (
           <p>予定されているイベントはありません</p>
         ) : (
