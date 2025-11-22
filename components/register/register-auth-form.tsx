@@ -31,7 +31,7 @@ export function RegisterAuthForm({
   ...props
 }: React.ComponentProps<"div">) {
   const router = useRouter();
-  const { selectedPlanId, resetRegistration } = useRegistration();
+  const { selectedPlanId, setAccountCreated, setUserId } = useRegistration();
 
   const form = useForm<SignupFormData>({
     resolver: zodResolver(signupFormSchema),
@@ -75,14 +75,15 @@ export function RegisterAuthForm({
       }
 
       toast.success("アカウントが作成されました", {
-        description: `${data.name}さん、IK ALUMNI CGT サポーターズクラブへようこそ`,
+        description: `${data.name}さん、次にお支払い手続きを行います`,
       });
 
-      // 登録状態をリセット
-      resetRegistration();
+      // アカウント作成完了をコンテキストに保存
+      setAccountCreated(true);
+      setUserId(userId);
 
-      form.reset();
-      router.push("/mypage");
+      // 支払いページへリダイレクト
+      router.push("/register/payment");
     } catch (error) {
       toast.error("エラーが発生しました", {
         description:

@@ -4,7 +4,7 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2024-12-18.acacia",
+  apiVersion: "2025-11-17.clover",
 });
 
 export async function POST(request: NextRequest) {
@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { priceId, successUrl, cancelUrl } = body;
+    const { priceId, successUrl, cancelUrl, metadata } = body;
 
     if (!priceId) {
       return NextResponse.json(
@@ -46,6 +46,7 @@ export async function POST(request: NextRequest) {
       cancel_url: cancelUrl || `${request.nextUrl.origin}/subscribe/cancel`,
       metadata: {
         userId: session.user.id,
+        ...metadata,
       },
     });
 

@@ -85,6 +85,13 @@
       "when": 1763786243470,
       "tag": "0011_small_catseye",
       "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1763789576224,
+      "tag": "0012_magenta_champions",
+      "breakpoints": true
     }
   ]
 }

@@ -36,6 +36,19 @@ export function PlanSelectionForm({ plans }: PlanSelectionFormProps) {
   const onSubmit = async (data: PlanSelectionFormData) => {
     setIsLoading(true);
     try {
+      // 選択されたプランを取得
+      const selectedPlan = plans.find(p => p.id === data.planId);
+
+      // stripePriceIdが存在しない場合はエラー
+      if (selectedPlan && !selectedPlan.stripePriceId) {
+        console.error("Selected plan does not have a Stripe Price ID");
+        form.setError("planId", {
+          message: "選択されたプランは現在ご利用いただけません。別のプランをお選びください。"
+        });
+        setIsLoading(false);
+        return;
+      }
+
       setSelectedPlanId(data.planId);
       router.push("/register/auth");
     } catch (error) {

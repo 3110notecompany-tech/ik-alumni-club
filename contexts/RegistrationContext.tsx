@@ -17,6 +17,16 @@ type RegistrationContextType = {
   selectedPlanId: number | null;
   setSelectedPlanId: (planId: number) => void;
 
+  // ステップ管理（1: 規約同意, 2: プラン選択, 3: アカウント作成, 4: 支払い）
+  currentStep: 1 | 2 | 3 | 4;
+  setCurrentStep: (step: 1 | 2 | 3 | 4) => void;
+
+  // アカウント作成状態
+  accountCreated: boolean;
+  setAccountCreated: (created: boolean) => void;
+  userId: string | null;
+  setUserId: (id: string | null) => void;
+
   // フロー全体のリセット
   resetRegistration: () => void;
 };
@@ -25,6 +35,9 @@ type StoredRegistrationData = {
   termsAgreed: boolean;
   termsAgreedAt: string | null;
   selectedPlanId: number | null;
+  currentStep: 1 | 2 | 3 | 4;
+  accountCreated: boolean;
+  userId: string | null;
 };
 
 const RegistrationContext = createContext<RegistrationContextType | undefined>(
@@ -44,6 +57,9 @@ export function RegistrationProvider({
   const [selectedPlanId, setSelectedPlanIdState] = useState<number | null>(
     null
   );
+  const [currentStep, setCurrentStepState] = useState<1 | 2 | 3 | 4>(1);
+  const [accountCreated, setAccountCreatedState] = useState(false);
+  const [userId, setUserIdState] = useState<string | null>(null);
   const [isInitialized, setIsInitialized] = useState(false);
 
   // 初期化時にlocalStorageから状態を復元
@@ -55,6 +71,9 @@ export function RegistrationProvider({
         setTermsAgreedState(data.termsAgreed);
         setTermsAgreedAt(data.termsAgreedAt ? new Date(data.termsAgreedAt) : null);
         setSelectedPlanIdState(data.selectedPlanId);
+        setCurrentStepState(data.currentStep || 1);
+        setAccountCreatedState(data.accountCreated || false);
+        setUserIdState(data.userId || null);
       }
     } catch (error) {
       console.error("Failed to restore registration state:", error);
@@ -72,12 +91,15 @@ export function RegistrationProvider({
         termsAgreed,
         termsAgreedAt: termsAgreedAt?.toISOString() || null,
         selectedPlanId,
+        currentStep,
+        accountCreated,
+        userId,
       };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
     } catch (error) {
       console.error("Failed to save registration state:", error);
     }
-  }, [termsAgreed, termsAgreedAt, selectedPlanId, isInitialized]);
+  }, [termsAgreed, termsAgreedAt, selectedPlanId, currentStep, accountCreated, userId, isInitialized]);
 
   const setTermsAgreed = useCallback((agreed: boolean) => {
     setTermsAgreedState(agreed);
@@ -92,10 +114,25 @@ export function RegistrationProvider({
     setSelectedPlanIdState(planId);
   }, []);
 
+  const setCurrentStep = useCallback((step: 1 | 2 | 3 | 4) => {
+    setCurrentStepState(step);
+  }, []);
+
+  const setAccountCreated = useCallback((created: boolean) => {
+    setAccountCreatedState(created);
+  }, []);
+
+  const setUserId = useCallback((id: string | null) => {
+    setUserIdState(id);
+  }, []);
+
   const resetRegistration = useCallback(() => {
     setTermsAgreedState(false);
     setTermsAgreedAt(null);
     setSelectedPlanIdState(null);
+    setCurrentStepState(1);
+    setAccountCreatedState(false);
+    setUserIdState(null);
     try {
       localStorage.removeItem(STORAGE_KEY);
     } catch (error) {
@@ -111,6 +148,12 @@ export function RegistrationProvider({
         setTermsAgreed,
         selectedPlanId,
         setSelectedPlanId,
+        currentStep,
+        setCurrentStep,
+        accountCreated,
+        setAccountCreated,
+        userId,
+        setUserId,
         resetRegistration,
       }}
     >

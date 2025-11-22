@@ -6,9 +6,11 @@ import { relations } from "drizzle-orm";
 
 export const membersRole = ["admin", "member"] as const;
 export const membersStatus = ["pending_profile", "active", "inactive"] as const;
+export const paymentStatus = ["pending", "completed", "failed", "canceled"] as const;
 
 export const membersRoleEnum = pgEnum("members_role", membersRole);
 export const membersStatusEnum = pgEnum("members_status", membersStatus);
+export const paymentStatusEnum = pgEnum("payment_status", paymentStatus);
 
 export const members = pgTable("members", {
   id: text("id").primaryKey().$defaultFn(() => nanoid()),
@@ -43,6 +45,12 @@ export const members = pgTable("members", {
   status: membersStatusEnum("status").default("pending_profile"),
   profileCompleted: boolean("profile_completed").default(false).notNull(),
   isActive: boolean("is_active").default(true).notNull(),
+
+  // Stripe支払い情報
+  paymentStatus: paymentStatusEnum("payment_status").default("pending"),
+  stripeSubscriptionId: varchar("stripe_subscription_id", { length: 255 }),
+  subscriptionStartDate: timestamp("subscription_start_date"),
+  subscriptionEndDate: timestamp("subscription_end_date"),
 
   // メタデータ
   createdAt: timestamp("created_at").defaultNow().notNull(),

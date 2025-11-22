@@ -1,4 +1,4 @@
-CREATE TABLE "subscriptions" (
+CREATE TABLE IF NOT EXISTS "subscriptions" (
 	"id" text PRIMARY KEY NOT NULL,
 	"plan" text NOT NULL,
 	"reference_id" text NOT NULL,
