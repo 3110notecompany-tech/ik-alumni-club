@@ -51,7 +51,7 @@ export const auth = betterAuth({
 
         // checkout.session.completed イベントを処理
         if (event.type === 'checkout.session.completed') {
-          const session = event.data.object as any;
+          const session = event.data.object as Stripe.Checkout.Session;
           const userId = session.client_reference_id;
           const customerId = session.customer;
 

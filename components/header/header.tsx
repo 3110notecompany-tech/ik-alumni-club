@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import logo from "./logo.png";
-import divider from "./line.svg";
 import xBlack from "../sns-icon/x-black.png";
 import instagramBlack from "../sns-icon/instagram-black.png";
 import youtubeBlack from "../sns-icon/youtube-black.png";

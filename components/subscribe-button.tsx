@@ -10,7 +10,7 @@ interface SubscribeButtonProps {
   priceId: string;
 }
 
-export function SubscribeButton({ priceId }: SubscribeButtonProps) {
+export function SubscribeButton({}: SubscribeButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubscribe = async () => {

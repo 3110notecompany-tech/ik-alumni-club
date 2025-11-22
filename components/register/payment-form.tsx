@@ -11,10 +11,27 @@ import { Loader2, CreditCard, AlertCircle } from "lucide-react";
 import { RegistrationProgress } from "./registration-progress";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
+interface PlanData {
+  id: number;
+  planCode: string;
+  planName: string;
+  displayName: string;
+  description: string | null;
+  price: string;
+  hierarchyLevel: number;
+  isBusinessPlan: boolean | null;
+  features: unknown;
+  color: string | null;
+  isActive: boolean;
+  stripePriceId: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 export function PaymentForm() {
   const router = useRouter();
   const { selectedPlanId, userId, accountCreated } = useRegistration();
-  const [plan, setPlan] = useState<any>(null);
+  const [plan, setPlan] = useState<PlanData | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isInitializing, setIsInitializing] = useState(true);
 
@@ -127,7 +144,7 @@ export function PaymentForm() {
 
   if (!plan) return null;
 
-  const features: string[] = plan.features || [];
+  const features: string[] = Array.isArray(plan.features) ? plan.features : [];
 
   return (
     <>

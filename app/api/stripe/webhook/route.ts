@@ -80,20 +80,21 @@ async function handleCheckoutSessionCompleted(
 
   try {
     // サブスクリプション情報を取得
-    const subscriptionResponse = await stripe.subscriptions.retrieve(subscriptionId);
+    const subscription = await stripe.subscriptions.retrieve(subscriptionId);
 
-    // Response型からデータを取得
-    const subscriptionData = 'data' in subscriptionResponse
-      ? subscriptionResponse.data
-      : subscriptionResponse;
+    // Stripe APIのレスポンスには current_period_start/end が含まれる
+    const subscriptionData = subscription as unknown as Stripe.Subscription & {
+      current_period_start: number;
+      current_period_end: number;
+    };
 
     await db
       .update(members)
       .set({
         paymentStatus: "completed",
         stripeSubscriptionId: subscriptionId,
-        subscriptionStartDate: new Date((subscriptionData as any).current_period_start * 1000),
-        subscriptionEndDate: new Date((subscriptionData as any).current_period_end * 1000),
+        subscriptionStartDate: new Date(subscriptionData.current_period_start * 1000),
+        subscriptionEndDate: new Date(subscriptionData.current_period_end * 1000),
       })
       .where(eq(members.userId, userId));
 
@@ -125,9 +126,10 @@ async function handleSubscriptionDeleted(subscription: Stripe.Subscription) {
 
 async function handlePaymentFailed(invoice: Stripe.Invoice) {
   // invoiceからsubscription IDを取得（文字列またはオブジェクトの可能性がある）
-  const subscriptionId = typeof (invoice as any).subscription === 'string'
-    ? (invoice as any).subscription
-    : (invoice as any).subscription?.id;
+  const subscriptionValue = (invoice as unknown as { subscription?: string | Stripe.Subscription }).subscription;
+  const subscriptionId = typeof subscriptionValue === 'string'
+    ? subscriptionValue
+    : subscriptionValue?.id;
 
   if (!subscriptionId) {
     console.error("No subscription ID found in failed invoice");
