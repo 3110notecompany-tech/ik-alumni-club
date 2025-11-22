@@ -71,6 +71,27 @@
       "when": 1763216154885,
       "tag": "0009_sticky_cannonball",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1763782403825,
+      "tag": "0010_foamy_blacklash",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1763786243470,
+      "tag": "0011_small_catseye",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1763789576224,
+      "tag": "0012_magenta_champions",
+      "breakpoints": true
     }
   ]
 }

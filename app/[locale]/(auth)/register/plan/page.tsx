@@ -11,7 +11,10 @@ export default async function PlanPage({
   await setLocale(params);
 
   const result = await getMemberPlans();
-  const plans: MemberPlan[] = result.success && result.data ? result.data : [];
+  // stripePriceIdが設定されているプランのみを表示
+  const plans: MemberPlan[] = result.success && result.data
+    ? result.data.filter(plan => plan.stripePriceId)
+    : [];
 
   return (
     <div className="bg-muted flex min-h-svh flex-col items-center justify-center p-6 md:p-10">

@@ -16,6 +16,7 @@ const STEPS = [
   { number: 1, title: "規約同意" },
   { number: 2, title: "プラン選択" },
   { number: 3, title: "アカウント作成" },
+  { number: 4, title: "お支払い" },
 ];
 
 export function RegistrationProgress({ currentStep, className }: RegistrationProgressProps) {

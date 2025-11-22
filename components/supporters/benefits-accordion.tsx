@@ -128,6 +128,7 @@ export default function BenefitsAccordion() {
             <div className="mt-4">
               <div className="flex flex-col md:flex-row gap-5">
                 <div className="md:w-2/5">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={benefit.image}
                     alt={benefit.title}

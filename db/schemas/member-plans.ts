@@ -12,6 +12,10 @@ export const memberPlans = pgTable("member_plans", {
   features: jsonb("features"),
   color: varchar("color", { length: 20 }),
   isActive: boolean("is_active").default(true).notNull(),
+
+  // Stripe連携
+  stripePriceId: varchar("stripe_price_id", { length: 255 }),
+
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")
     .defaultNow()
