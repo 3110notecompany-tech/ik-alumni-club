@@ -6,6 +6,7 @@ import { ScheduleContents } from "@/components/shedule/content";
 import Image from "next/image";
 import heroBg from "./hero-bg.jpg";
 import { VideoContents } from "@/components/video/content";
+import { HeroCarousel } from "@/components/hero/hero-carousel";
 
 export const dynamic = 'force-dynamic';
 
@@ -18,7 +19,7 @@ export default async function Home({
 
   return (
     <div className="font-sans max-w-full">
-      <div className="relative w-full mb-16 md:mb-32">
+      <div className="relative w-full mb-8 md:mb-12 lg:mb-16 mt-[140px]">
         <Image
           src={heroBg}
           alt="Hero Background"
@@ -26,6 +27,7 @@ export default async function Home({
           priority
         />
       </div>
+      <HeroCarousel />
       <section className="container mx-auto px-4 mb-16 md:mb-32">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-lg md:text-xl leading-relaxed mb-6">
