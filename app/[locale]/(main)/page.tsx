@@ -30,10 +30,12 @@ export default async function Home({
       </div>
       <HeroCarousel />
       <AboutSection />
-      <main className="container mx-auto">
-        <div className="mb-16 md:mb-32">
+      <div className="mb-16 md:mb-32 bg-gradient-red py-8 md:py-16">
+        <div className="container mx-auto">
           <InformationContents />
         </div>
+      </div>
+      <main className="container mx-auto">
         <div className="mb-16 md:mb-32">
           <ScheduleContents />
         </div>
