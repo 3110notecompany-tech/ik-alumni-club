@@ -14,7 +14,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/s
 import { Separator } from "@/components/ui/separator";
 import { useTranslations } from "next-intl";
 import { authClient } from "@/lib/auth-client";
-import { User, LogOut, Menu } from "lucide-react";
+import { User, LogOut } from "lucide-react";
 
 export function Header() {
   const t = useTranslations("Header");
@@ -28,23 +28,30 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container max-w-full flex h-[80px] md:h-[100px] items-center justify-between">
+    <header className="fixed top-0 z-50 w-full h-[140px]">
+      <div className="container max-w-full h-full flex items-center justify-between">
         {/* ロゴ */}
         <Image
           src={logo}
           alt=""
-          width={60}
-          height={60}
+          width={100}
+          height={100}
           placeholder="blur"
-          className="md:w-[100px] md:h-[100px] dark:brightness-[0.2] dark:grayscale"
+          className="w-[80px] h-auto md:w-[100px] object-contain dark:brightness-[0.2] dark:grayscale"
         />
 
         {/* ハンバーガーメニュー（全画面サイズ） */}
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" aria-label="メニューを開く">
-              <Menu className="h-6 w-6" />
+            <Button
+              variant="ghost"
+              size="icon"
+              aria-label="メニューを開く"
+              className="w-[70px] h-[70px] rounded-full border-1 border-red-500 bg-white hover:bg-white flex flex-col gap-1.5 items-center justify-center"
+            >
+              <span className="w-6 h-0.5 bg-red-500"></span>
+              <span className="w-6 h-0.5 bg-red-500"></span>
+              <span className="w-6 h-0.5 bg-red-500"></span>
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="w-[300px]">

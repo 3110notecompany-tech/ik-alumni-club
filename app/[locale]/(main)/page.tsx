@@ -6,6 +6,9 @@ import { ScheduleContents } from "@/components/shedule/content";
 import Image from "next/image";
 import heroBg from "./hero-bg.jpg";
 import { VideoContents } from "@/components/video/content";
+import { HeroCarousel } from "@/components/hero/hero-carousel";
+import { AboutSection } from "@/components/hero/about-section";
+import { SupportersContents } from "@/components/supporters/content";
 
 export const dynamic = 'force-dynamic';
 
@@ -18,7 +21,7 @@ export default async function Home({
 
   return (
     <div className="font-sans max-w-full">
-      <div className="relative w-full mb-16 md:mb-32">
+      <div className="relative w-full mb-8 md:mb-12 lg:mb-16">
         <Image
           src={heroBg}
           alt="Hero Background"
@@ -26,35 +29,28 @@ export default async function Home({
           priority
         />
       </div>
-      <section className="container mx-auto px-4 mb-16 md:mb-32">
-        <div className="max-w-3xl mx-auto text-center">
-          <p className="text-lg md:text-xl leading-relaxed mb-6">
-            2022年に発足した、千葉県内唯一の一般カラーガードチーム。
-          </p>
-          <p className="text-lg md:text-xl leading-relaxed mb-6">
-            チーム名のALUMNIとは「卒業生」という意味で、<br />
-            その名の通りメンバーは柏市立柏高等学校（通称：イチカシ）の卒業生で構成されています。
-          </p>
-          <p className="text-lg md:text-xl leading-relaxed">
-            地元柏市でのイベント出演や年度末に行われる自主公演に向けて日々活動しています。
-          </p>
-        </div>
-      </section>
-      <main className="container mx-auto">
-        <div className="mb-16 md:mb-32">
+      <div className="mb-16 md:mb-32">
+        <HeroCarousel />
+      </div>
+      {/* <AboutSection /> */}
+      <div className="mb-16 md:mb-32">
+        <div className="container mx-auto">
           <InformationContents />
         </div>
+      </div>
+      <div className="mb-16 md:mb-32 bg-gradient-red py-8 md:py-16">
+        <main className="container mx-auto">
         <div className="mb-16 md:mb-32">
           <ScheduleContents />
         </div>
-        <div className="mb-16 md:mb-32">
+      </main>
+      </div>
+      <div className="mb-16 md:mb-32">
+        <div className="container mx-auto">
           <VideoContents />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-15 mb-16 md:mb-32">
-          <BlogContents />
-          <NewsLettersContents />
         </div>
-      </main>
+      <SupportersContents />
     </div>
   );
 }
