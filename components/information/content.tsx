@@ -12,12 +12,12 @@ export async function InformationContents() {
 
   return (
     <div className="flex flex-col">
-      <div className="text-white">
+      <div className="text-black">
         <ContentsHeader title={t("information")} viewAllHref="/information" />
       </div>
       <div className="flex flex-col md:grid md:grid-cols-3 gap-[30px] mt-[60px]">
         {items.length === 0 ? (
-          <p className="text-white">お知らせはありません</p>
+          <p className="text-black">お知らせはありません</p>
         ) : (
           items.map((item) => (
             <InformationCard

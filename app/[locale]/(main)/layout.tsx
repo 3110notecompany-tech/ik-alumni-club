@@ -9,7 +9,9 @@ export default function MainLayout({
   return (
     <>
       <Header />
-      {children}
+      <div className="mt-[140px]">
+        {children}
+      </div>
       <Footer />
     </>
   );

@@ -9,27 +9,29 @@ export async function ScheduleContents() {
 
   return (
     <div className="flex flex-col">
-      <ContentsHeader title="SCHEDULE" viewAllHref="/schedule" />
-      <div className="flex flex-col md:flex-row gap-[30px] mt-[60px]">
+      <div className="text-white">
+        <ContentsHeader title="SCHEDULE" viewAllHref="/schedule" />
+      </div>
+      <div className="flex flex-col gap-[30px] mt-[60px]">
         {items.length === 0 ? (
-          <p>予定されているイベントはありません</p>
+          <p className="text-white">予定されているイベントはありません</p>
         ) : (
           items.map((schedule) => {
             const dateObj = new Date(schedule.eventDate);
+            const year = String(dateObj.getFullYear());
             const month = String(dateObj.getMonth() + 1).padStart(2, "0");
             const day = String(dateObj.getDate()).padStart(2, "0");
-            const weekDays = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+            const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
             const weekDay = weekDays[dateObj.getDay()];
 
             return (
               <Link key={schedule.id} href={`/schedule/${schedule.id}`}>
                 <ScheduleContentsCard
                   title={schedule.title}
+                  year={year}
                   month={month}
                   day={day}
                   weekDay={weekDay}
-                  imageUrl={schedule.imageUrl}
-                  linkUrl={schedule.linkUrl}
                 />
               </Link>
             );

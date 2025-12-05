@@ -22,7 +22,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="w-full border-t bg-background mt-16 md:mt-32">
+    <footer className="w-full border-t bg-background">
       <div className="pt-8 md:pt-[50px]">
         {/* SNSアイコン */}
         <div className="flex gap-4 items-center justify-center mb-6 md:mb-8">

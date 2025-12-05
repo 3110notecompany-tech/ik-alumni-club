@@ -8,6 +8,7 @@ import heroBg from "./hero-bg.jpg";
 import { VideoContents } from "@/components/video/content";
 import { HeroCarousel } from "@/components/hero/hero-carousel";
 import { AboutSection } from "@/components/hero/about-section";
+import { SupportersContents } from "@/components/supporters/content";
 
 export const dynamic = 'force-dynamic';
 
@@ -20,7 +21,7 @@ export default async function Home({
 
   return (
     <div className="font-sans max-w-full">
-      <div className="relative w-full mb-8 md:mb-12 lg:mb-16 mt-[140px]">
+      <div className="relative w-full mb-8 md:mb-12 lg:mb-16">
         <Image
           src={heroBg}
           alt="Hero Background"
@@ -28,25 +29,28 @@ export default async function Home({
           priority
         />
       </div>
-      <HeroCarousel />
-      <AboutSection />
-      <div className="mb-16 md:mb-32 bg-gradient-red py-8 md:py-16">
+      <div className="mb-16 md:mb-32">
+        <HeroCarousel />
+      </div>
+      {/* <AboutSection /> */}
+      <div className="mb-16 md:mb-32">
         <div className="container mx-auto">
           <InformationContents />
         </div>
       </div>
-      <main className="container mx-auto">
+      <div className="mb-16 md:mb-32 bg-gradient-red py-8 md:py-16">
+        <main className="container mx-auto">
         <div className="mb-16 md:mb-32">
           <ScheduleContents />
         </div>
-        <div className="mb-16 md:mb-32">
+      </main>
+      </div>
+      <div className="mb-16 md:mb-32">
+        <div className="container mx-auto">
           <VideoContents />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-15 mb-16 md:mb-32">
-          <BlogContents />
-          <NewsLettersContents />
         </div>
-      </main>
+      <SupportersContents />
     </div>
   );
 }

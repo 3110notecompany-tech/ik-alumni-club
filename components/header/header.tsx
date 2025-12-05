@@ -14,7 +14,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/s
 import { Separator } from "@/components/ui/separator";
 import { useTranslations } from "next-intl";
 import { authClient } from "@/lib/auth-client";
-import { User, LogOut, Menu } from "lucide-react";
+import { User, LogOut } from "lucide-react";
 
 export function Header() {
   const t = useTranslations("Header");
@@ -47,7 +47,7 @@ export function Header() {
               variant="ghost"
               size="icon"
               aria-label="メニューを開く"
-              className="w-[70px] h-[70px] rounded-full border-1 border-red-500 hover:bg-transparent flex flex-col gap-1.5 items-center justify-center"
+              className="w-[70px] h-[70px] rounded-full border-1 border-red-500 bg-white hover:bg-white flex flex-col gap-1.5 items-center justify-center"
             >
               <span className="w-6 h-0.5 bg-red-500"></span>
               <span className="w-6 h-0.5 bg-red-500"></span>
