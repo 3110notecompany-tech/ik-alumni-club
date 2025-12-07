@@ -54,7 +54,7 @@ export function Header() {
               <span className="w-6 h-0.5 bg-red-500"></span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-[300px]">
+          <SheetContent className="!w-[calc(100vw-40px)] !max-w-full !left-[20px] !right-[20px] !top-[20px] !h-[calc(100vh-40px)] [&]:data-[state=open]:!fade-in-0 [&]:data-[state=closed]:!fade-out-0 [&]:data-[state=open]:!slide-in-from-right-0 [&]:data-[state=closed]:!slide-out-to-right-0">
             <SheetTitle className="sr-only">メニュー</SheetTitle>
             <nav className="flex flex-col gap-4 mt-8">
               <Link href="/" className="text-base font-medium hover:underline transition-colors">
