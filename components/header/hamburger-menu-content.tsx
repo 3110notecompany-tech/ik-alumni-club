@@ -7,6 +7,8 @@ import xBlack from "../sns-icon/x-black.png";
 import instagramBlack from "../sns-icon/instagram-black.png";
 import youtubeBlack from "../sns-icon/youtube-black.png";
 import tiktokBlack from "../sns-icon/tiktok-black.png";
+import logo from "./logo.png";
+import supportersLogo from "@/app/[locale]/(main)/supporters/top_supporter's.jpg";
 
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
@@ -28,6 +30,10 @@ export function HamburgerMenuContent() {
     <nav className="flex flex-col md:grid md:grid-cols-2 h-full w-full rounded-none md:rounded-[10px] overflow-y-auto md:overflow-hidden">
       {/* 上（スマホ）/ 左（PC）: メインメニュー（赤系背景） */}
       <div className="bg-gradient-red p-6 flex flex-col gap-4 flex-shrink-0 md:h-full">
+        {/* ロゴ */}
+        <div className="mb-4 flex justify-center">
+          <Image src={logo} alt="IK ALUMNI CGT" width={200} height={112} className="h-auto" />
+        </div>
         <Link href="/" className="text-base font-medium text-white hover:underline transition-colors">
           {t("home")}
         </Link>
@@ -69,6 +75,10 @@ export function HamburgerMenuContent() {
 
       {/* 下（スマホ）/ 右（PC）: サポーターズクラブ（青系背景） */}
       <div className="bg-gradient-to-br from-cyan-400 via-blue-400 to-cyan-500 p-6 flex flex-col gap-4 flex-grow md:h-full">
+        {/* サポーターズクラブロゴ */}
+        <div className="mb-4 flex justify-center">
+          <Image src={supportersLogo} alt="Supporter's Club" width={200} height={112} className="h-auto" />
+        </div>
         {session?.user ? (
           <>
             <Link href="/mypage" className="w-full">
