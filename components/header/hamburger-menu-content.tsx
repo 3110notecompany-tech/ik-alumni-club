@@ -9,6 +9,7 @@ import youtubeBlack from "../sns-icon/youtube-black.png";
 import tiktokBlack from "../sns-icon/tiktok-black.png";
 import logo from "./logo.png";
 import supportersLogo from "@/app/[locale]/(main)/supporters/top_supporter's.jpg";
+import supportersSamune from "@/components/supporters/samune.jpg";
 
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
@@ -80,8 +81,8 @@ export function HamburgerMenuContent() {
           <Image src={supportersLogo} alt="Supporter's Club" width={200} height={112} className="h-auto" />
         </div>
         {session?.user ? (
-          <>
-            <Link href="/mypage" className="w-full">
+          <div className="flex gap-4">
+            <Link href="/mypage" className="flex-1">
               <Button variant="outline" className="w-full min-h-11 bg-white/20 border-white text-white hover:bg-white/30">
                 <User className="h-4 w-4 mr-2" />
                 {t("mypage")}
@@ -89,27 +90,46 @@ export function HamburgerMenuContent() {
             </Link>
             <Button
               variant="outline"
-              className="w-full min-h-11 bg-white/20 border-white text-white hover:bg-white/30"
+              className="flex-1 min-h-11 bg-white/20 border-white text-white hover:bg-white/30"
               onClick={handleLogout}
             >
               <LogOut className="h-4 w-4 mr-2" />
               {t("logout")}
             </Button>
-          </>
+          </div>
         ) : (
-          <>
-            <Link href="/supporters" className="w-full">
+          <div className="flex gap-4">
+            <Link href="/supporters" className="flex-1">
               <Button className="w-full min-h-11 bg-white text-blue-500 hover:bg-white/90">
                 {t("joinUs")}
               </Button>
             </Link>
-            <Link href="/login" className="w-full">
+            <Link href="/login" className="flex-1">
               <Button variant="outline" className="w-full min-h-11 bg-white/20 border-white text-white hover:bg-white/30">
                 {t("login")}
               </Button>
             </Link>
-          </>
+          </div>
         )}
+        {/* サムネイル画像 */}
+        <div className="mt-4 flex justify-center">
+          <Image src={supportersSamune} alt="Supporter's Club" width={360} height={202} className="h-auto rounded-lg" />
+        </div>
+        {/* コンテンツリンク */}
+        <div className="grid grid-cols-2 gap-4 mt-4 w-full bg-blue-500 rounded-lg p-4">
+          <Link href="#" className="text-base font-medium text-white hover:text-white/70 transition-colors text-center py-2">
+            VIDEO
+          </Link>
+          <Link href="#" className="text-base font-medium text-white hover:text-white/70 transition-colors text-center py-2">
+            NEWS LETTER
+          </Link>
+          <Link href="#" className="text-base font-medium text-white hover:text-white/70 transition-colors text-center py-2">
+            PHOTO LIBRARY
+          </Link>
+          <Link href="#" className="text-base font-medium text-white hover:text-white/70 transition-colors text-center py-2">
+            EXCLUSIVE BLOG
+          </Link>
+        </div>
       </div>
     </nav>
   );
