@@ -41,7 +41,10 @@ export async function middleware(request: NextRequest) {
 	// This is the recommended approach to optimistically redirect users
 	// We recommend handling auth checks in each page/route
 	if (!sessionCookie && isPrivateRoute) {
-		return NextResponse.redirect(new URL("/login", request.url));
+		const loginUrl = new URL("/login", request.url);
+		// ログイン後に元のページに戻れるようにreturnUrlを付与
+		loginUrl.searchParams.set("returnUrl", pathname);
+		return NextResponse.redirect(loginUrl);
 	}
 
 	// 国際化ミドルウェアを実行

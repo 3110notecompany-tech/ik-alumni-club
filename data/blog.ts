@@ -1,22 +1,15 @@
 import "server-only";
 import { db } from "@/db";
 import { blogs } from "@/db/schemas/blogs";
-import { desc, eq, and } from "drizzle-orm";
-import { canAccessMemberContent } from "@/lib/session";
+import { desc, eq } from "drizzle-orm";
 
 /**
  * 公開されているブログ一覧を取得（一般ユーザー向け）
- * 会員限定コンテンツは会員のみ閲覧可能
+ * 会員限定コンテンツも一覧には表示（詳細ページでアクセス制御）
  */
 export const getPublishedBlogs = async () => {
-  const isMember = await canAccessMemberContent();
-
   return db.query.blogs.findMany({
-    where: and(
-      eq(blogs.published, true),
-      // 会員でない場合は会員限定コンテンツを除外
-      isMember ? undefined : eq(blogs.isMemberOnly, false)
-    ),
+    where: eq(blogs.published, true),
     orderBy: [desc(blogs.createdAt)],
     with: {
       author: true,
@@ -50,17 +43,11 @@ export const getBlog = async (id: string) => {
 
 /**
  * 人気記事トップ5を取得
- * 会員限定コンテンツは会員のみ閲覧可能
+ * 会員限定コンテンツも一覧には表示（詳細ページでアクセス制御）
  */
 export const getPopularBlogs = async (limit: number = 5) => {
-  const isMember = await canAccessMemberContent();
-
   return db.query.blogs.findMany({
-    where: and(
-      eq(blogs.published, true),
-      // 会員でない場合は会員限定コンテンツを除外
-      isMember ? undefined : eq(blogs.isMemberOnly, false)
-    ),
+    where: eq(blogs.published, true),
     orderBy: [desc(blogs.viewCount)],
     limit,
   });
@@ -68,17 +55,11 @@ export const getPopularBlogs = async (limit: number = 5) => {
 
 /**
  * 最新記事を取得（ホーム画面用）
- * 会員限定コンテンツは会員のみ閲覧可能
+ * 会員限定コンテンツも一覧には表示（詳細ページでアクセス制御）
  */
 export const getRecentBlogs = async (limit: number = 3) => {
-  const isMember = await canAccessMemberContent();
-
   return db.query.blogs.findMany({
-    where: and(
-      eq(blogs.published, true),
-      // 会員でない場合は会員限定コンテンツを除外
-      isMember ? undefined : eq(blogs.isMemberOnly, false)
-    ),
+    where: eq(blogs.published, true),
     orderBy: [desc(blogs.createdAt)],
     limit,
   });

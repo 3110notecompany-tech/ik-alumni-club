@@ -7,6 +7,7 @@ type Information = {
   date: string;
   content: string;
   published: boolean;
+  isMemberOnly: boolean;
 };
 
 export function InformationList({ items }: { items: Information[] }) {
@@ -17,7 +18,11 @@ export function InformationList({ items }: { items: Information[] }) {
       ) : (
         items.map((item) => (
           <Link key={item.id} href={`/information/${item.id}`}>
-            <ContentsCard title={item.title} date={item.date} />
+            <ContentsCard
+              title={item.title}
+              date={item.date}
+              isMemberOnly={item.isMemberOnly}
+            />
           </Link>
         ))
       )}
