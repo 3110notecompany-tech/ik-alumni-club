@@ -94,7 +94,7 @@ export function Header() {
           hideCloseButton
           onInteractOutside={(e) => e.preventDefault()}
           onPointerDownOutside={(e) => e.preventDefault()}
-          className="!z-50 !w-full !max-w-full !left-0 !right-0 !top-0 !h-full md:!w-[calc(100vw-40px)] md:!left-[20px] md:!right-[20px] md:!top-[20px] md:!h-[calc(100vh-40px)] rounded-none md:rounded-[10px] [&]:data-[state=open]:!fade-in-0 [&]:data-[state=closed]:!fade-out-0 [&]:data-[state=open]:!slide-in-from-right-0 [&]:data-[state=closed]:!slide-out-to-right-0"
+          className="!z-50 !w-full !max-w-full !left-0 !right-0 !top-0 !h-full md:!w-[calc(100vw-40px)] md:!left-[20px] md:!right-[20px] md:!top-[20px] md:!h-[calc(100vh-40px)] rounded-none md:rounded-[10px] [&]:data-[state=open]:!fade-in-0 [&]:data-[state=closed]:!fade-out-0 [&]:data-[state=open]:!slide-in-from-right-0 [&]:data-[state=closed]:!slide-out-to-right-0 !bg-transparent !p-0 overflow-hidden"
         >
           <SheetTitle className="sr-only">メニュー</SheetTitle>
           <HamburgerMenuContent />
