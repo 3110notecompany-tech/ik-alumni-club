@@ -11,8 +11,8 @@ import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
 import { ImagePlus, X } from "lucide-react";
 import Image from "next/image";
-import { useRef, useState } from "react";
-import AvatarEditor from "react-avatar-editor";
+import { useCallback, useState } from "react";
+import Cropper, { Area } from "react-easy-crop";
 import { useDropzone } from "react-dropzone";
 
 type Props = {
@@ -52,7 +52,12 @@ export function InputImage({
   value = "",
   onChange,
 }: Props) {
-  const editor = useRef<AvatarEditor>(null);
+  const [imageSrc, setImageSrc] = useState<string>("");
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null);
+  const [open, setOpen] = useState(false);
+
   const { getRootProps, getInputProps, isDragAccept } = useDropzone({
     maxSize,
     multiple: false,
@@ -63,24 +68,32 @@ export function InputImage({
     },
     useFsAccessApi: false,
     onDropAccepted: (dropped) => {
-      setImage(dropped[0]);
-      setScale(1.0);
-      setOpen(true);
+      const reader = new FileReader();
+      reader.onload = () => {
+        setImageSrc(reader.result as string);
+        setCrop({ x: 0, y: 0 });
+        setZoom(1);
+        setOpen(true);
+      };
+      reader.readAsDataURL(dropped[0]);
     },
   });
-  const [image, setImage] = useState<File>();
-  const [scale, setScale] = useState(1.0);
-  const [open, setOpen] = useState(false);
+
+  const onCropComplete = useCallback((_: Area, croppedAreaPixels: Area) => {
+    setCroppedAreaPixels(croppedAreaPixels);
+  }, []);
 
   const cropImage = async () => {
-    const dataUrl = editor.current?.getImage().toDataURL("image/jpeg");
-    const result = await resizeBase64Img(
-      dataUrl!,
+    if (!imageSrc || !croppedAreaPixels) return;
+
+    const croppedImage = await getCroppedImg(
+      imageSrc,
+      croppedAreaPixels,
       resultWidth,
-      resultWidth / aspectRatio,
+      resultWidth / aspectRatio
     );
     setOpen(false);
-    onChange(result);
+    onChange(croppedImage);
   };
 
   return (
@@ -134,30 +147,32 @@ export function InputImage({
         <DialogTitle className="sr-only">イメージを切り抜く</DialogTitle>
         <DialogContent className="max-w-md">
           <div
-            className="border relative overflow-hidden rounded-lg"
+            className="relative overflow-hidden rounded-lg"
             style={{
               aspectRatio,
+              height: 300,
             }}
           >
-            {image && (
-              <AvatarEditor
-                className="absolute max-w-full max-h-full inset-0"
-                scale={scale}
-                ref={editor}
-                width={1000}
-                height={1000 / aspectRatio}
-                image={image}
+            {imageSrc && (
+              <Cropper
+                image={imageSrc}
+                crop={crop}
+                zoom={zoom}
+                aspect={aspectRatio}
+                onCropChange={setCrop}
+                onCropComplete={onCropComplete}
+                onZoomChange={setZoom}
               />
             )}
           </div>
 
           <div className="my-4">
             <Slider
-              max={2}
+              max={3}
               step={0.01}
               min={1}
-              defaultValue={[1]}
-              onValueChange={([value]) => setScale(value)}
+              value={[zoom]}
+              onValueChange={([value]) => setZoom(value)}
             />
           </div>
 
@@ -175,23 +190,43 @@ export function InputImage({
   );
 }
 
-function resizeBase64Img(base64: string, width: number, height: number) {
-  return new Promise<string>((resolve, reject) => {
-    const img = document.createElement("img");
+async function getCroppedImg(
+  imageSrc: string,
+  pixelCrop: Area,
+  outputWidth: number,
+  outputHeight: number
+): Promise<string> {
+  const image = await createImage(imageSrc);
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
 
-    img.onload = function () {
-      const canvas = document.createElement("canvas");
-      canvas.width = width;
-      canvas.height = height;
-      const ctx = canvas.getContext("2d");
-      ctx!.drawImage(img, 0, 0, width, height);
-      resolve(canvas.toDataURL("image/jpeg"));
-    };
+  if (!ctx) {
+    throw new Error("No 2d context");
+  }
 
-    img.onerror = function (err) {
-      reject(err);
-    };
+  canvas.width = outputWidth;
+  canvas.height = outputHeight;
 
-    img.src = base64;
+  ctx.drawImage(
+    image,
+    pixelCrop.x,
+    pixelCrop.y,
+    pixelCrop.width,
+    pixelCrop.height,
+    0,
+    0,
+    outputWidth,
+    outputHeight
+  );
+
+  return canvas.toDataURL("image/jpeg");
+}
+
+function createImage(url: string): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const image = document.createElement("img");
+    image.addEventListener("load", () => resolve(image));
+    image.addEventListener("error", (error) => reject(error));
+    image.src = url;
   });
 }
