@@ -34,30 +34,30 @@ export function HamburgerMenuContent() {
         <div className="mb-4 flex justify-center">
           <Image src={logo} alt="IK ALUMNI CGT" width={200} height={112} className="h-auto" />
         </div>
-        <Link href="/" className="text-base font-medium text-red-500 hover:underline transition-colors">
+        <Link href="/" className="text-base font-medium text-red-500 hover:text-red-300 transition-colors pb-4 border-b border-red-500">
           {t("home")}
         </Link>
-        <Link href="/information" className="text-base font-medium text-red-500 hover:underline transition-colors">
+        <Link href="/information" className="text-base font-medium text-red-500 hover:text-red-300 transition-colors pb-4 border-b border-red-500">
           {t("information")}
         </Link>
-        <Link href="/schedule" className="text-base font-medium text-red-500 hover:underline transition-colors">
+        <Link href="/schedule" className="text-base font-medium text-red-500 hover:text-red-300 transition-colors pb-4 border-b border-red-500">
           {t("schedule")}
         </Link>
-        <Link href="/video" className="text-base font-medium text-red-500 hover:underline transition-colors">
+        <Link href="/video" className="text-base font-medium text-red-500 hover:text-red-300 transition-colors pb-4 border-b border-red-500">
           {t("video")}
         </Link>
-        <Link href="/blog" className="text-base font-medium text-red-500 hover:underline transition-colors">
+        <Link href="/blog" className="text-base font-medium text-red-500 hover:text-red-300 transition-colors pb-4 border-b border-red-500">
           {t("blog")}
         </Link>
-        <Link href="/newsletter" className="text-base font-medium text-red-500 hover:underline transition-colors">
+        <Link href="/newsletter" className="text-base font-medium text-red-500 hover:text-red-300 transition-colors pb-4 border-b border-red-500">
           {t("newsletters")}
         </Link>
-        <Link href="/contact" className="text-base font-medium text-red-500 hover:underline transition-colors">
+        <Link href="/contact" className="text-base font-medium text-red-500 hover:text-red-300 transition-colors pb-4 border-b border-red-500">
           {t("contact")}
         </Link>
 
         {/* SNSアイコン */}
-        <div className="flex gap-4 mt-4">
+        <div className="flex gap-4 mt-4 justify-center">
           <a href="https://x.com/ik_alumni_2022" target="_blank" rel="noopener noreferrer">
             <Image src={xBlack} alt="X (Twitter)" height={24} width={24} />
           </a>
