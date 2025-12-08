@@ -1,4 +1,5 @@
 import { setLocale } from "@/app/web/i18n/set-locale";
+import { getTranslations } from "next-intl/server";
 import { User } from "lucide-react";
 
 export default async function ProfilesPage({
@@ -7,6 +8,7 @@ export default async function ProfilesPage({
   params: Promise<{ locale: string }>;
 }) {
   await setLocale(params);
+  const t = await getTranslations("Contents");
 
   const members = [
     { id: "1", name: "山田 太郎", role: "代表" },
@@ -19,7 +21,7 @@ export default async function ProfilesPage({
 
   return (
     <div className="container mx-auto px-4 pt-10 pb-32">
-      <h1 className="main-text mb-10">メンバー紹介</h1>
+      <h1 className="main-text mb-10">{t("profiles")}</h1>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6">
         {members.map((member) => (
           <div

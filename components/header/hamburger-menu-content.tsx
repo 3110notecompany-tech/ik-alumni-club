@@ -50,8 +50,8 @@ export function HamburgerMenuContent() {
         <Link href="/blog" className="text-base font-medium text-red-500 hover:text-red-300 transition-colors pb-4 border-b border-red-500">
           {t("blog")}
         </Link>
-        <Link href="/newsletter" className="text-base font-medium text-red-500 hover:text-red-300 transition-colors pb-4 border-b border-red-500">
-          {t("newsletters")}
+        <Link href="/profiles" className="text-base font-medium text-red-500 hover:text-red-300 transition-colors pb-4 border-b border-red-500">
+          {t("profiles")}
         </Link>
         <Link href="/contact" className="text-base font-medium text-red-500 hover:text-red-300 transition-colors pb-4 border-b border-red-500">
           {t("contact")}
