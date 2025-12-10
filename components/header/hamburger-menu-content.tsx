@@ -50,8 +50,8 @@ export function HamburgerMenuContent() {
         <Link href="/blog" className="text-base font-medium text-red-500 hover:text-red-300 transition-colors pb-4 border-b border-red-500">
           {t("blog")}
         </Link>
-        <Link href="/newsletter" className="text-base font-medium text-red-500 hover:text-red-300 transition-colors pb-4 border-b border-red-500">
-          {t("newsletters")}
+        <Link href="/profiles" className="text-base font-medium text-red-500 hover:text-red-300 transition-colors pb-4 border-b border-red-500">
+          {t("profiles")}
         </Link>
         <Link href="/contact" className="text-base font-medium text-red-500 hover:text-red-300 transition-colors pb-4 border-b border-red-500">
           {t("contact")}
@@ -117,16 +117,16 @@ export function HamburgerMenuContent() {
         </div>
         {/* コンテンツリンク */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 w-full bg-blue-500 rounded-lg p-4">
-          <Link href="#" className="text-base font-medium text-white hover:text-white/70 transition-colors text-center py-2">
+          <Link href="/video" className="text-base font-medium text-white hover:text-white/70 transition-colors text-center py-2">
             VIDEO
           </Link>
-          <Link href="#" className="text-base font-medium text-white hover:text-white/70 transition-colors text-center py-2">
+          <Link href="/newsletter" className="text-base font-medium text-white hover:text-white/70 transition-colors text-center py-2">
             NEWS LETTER
           </Link>
-          <Link href="#" className="text-base font-medium text-white hover:text-white/70 transition-colors text-center py-2">
+          <Link href="/photos" className="text-base font-medium text-white hover:text-white/70 transition-colors text-center py-2">
             PHOTO LIBRARY
           </Link>
-          <Link href="#" className="text-base font-medium text-white hover:text-white/70 transition-colors text-center py-2">
+          <Link href="/blog" className="text-base font-medium text-white hover:text-white/70 transition-colors text-center py-2">
             EXCLUSIVE BLOG
           </Link>
         </div>

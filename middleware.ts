@@ -8,6 +8,11 @@ const publicRoutes = [
   "/signup",
   "/",
   "/information",
+  "/schedule",
+  "/video",
+  "/blog",
+  "/profiles",
+  "/contact",
   "/supporters",
   "/register/terms",
   "/register/plan",
@@ -34,14 +39,20 @@ export async function middleware(request: NextRequest) {
 		return NextResponse.redirect(new URL("/admin/login", request.url));
 	}
 
-	// 一般の非公開ルートチェック
-	const isPrivateRoute = !publicRoutes.includes(pathnameWithoutLocale) && !isAdminRoute;
+	// 一般の非公開ルートチェック（前方一致で判定）
+	const isPublicRoute = publicRoutes.some(
+		(route) => pathnameWithoutLocale === route || pathnameWithoutLocale.startsWith(route + "/")
+	);
+	const isPrivateRoute = !isPublicRoute && !isAdminRoute;
 
 	// THIS IS NOT SECURE!
 	// This is the recommended approach to optimistically redirect users
 	// We recommend handling auth checks in each page/route
 	if (!sessionCookie && isPrivateRoute) {
-		return NextResponse.redirect(new URL("/login", request.url));
+		const loginUrl = new URL("/login", request.url);
+		// ログイン後に元のページに戻れるようにreturnUrlを付与
+		loginUrl.searchParams.set("returnUrl", pathname);
+		return NextResponse.redirect(loginUrl);
 	}
 
 	// 国際化ミドルウェアを実行

@@ -1,20 +1,13 @@
 import { db } from "@/db";
 import { informations } from "@/db/schemas/informations";
-import { eq, desc, and } from "drizzle-orm";
-import { canAccessMemberContent } from "@/lib/session";
+import { eq, desc } from "drizzle-orm";
 import "server-only";
 
 // 公開済みお知らせ一覧を取得（一般公開用）
-// 会員限定コンテンツは会員のみ閲覧可能
+// 会員限定コンテンツも一覧には表示（詳細ページでアクセス制御）
 export const getInformations = async () => {
-  const isMember = await canAccessMemberContent();
-
   return db.query.informations.findMany({
-    where: and(
-      eq(informations.published, true),
-      // 会員でない場合は会員限定コンテンツを除外
-      isMember ? undefined : eq(informations.isMemberOnly, false)
-    ),
+    where: eq(informations.published, true),
     orderBy: [desc(informations.date)],
   });
 };

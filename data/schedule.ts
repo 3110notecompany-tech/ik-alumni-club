@@ -1,36 +1,26 @@
 import { db } from "@/db";
 import { schedules } from "@/db/schemas/schedules";
 import { eq, desc, asc, gte, and } from "drizzle-orm";
-import { canAccessMemberContent } from "@/lib/session";
 import "server-only";
 
 // 公開済みスケジュール一覧を取得（一般公開用）
-// 会員限定コンテンツは会員のみ閲覧可能
+// 会員限定コンテンツも一覧には表示（詳細ページでアクセス制御）
 export const getSchedules = async () => {
-  const isMember = await canAccessMemberContent();
-
   return db.query.schedules.findMany({
-    where: and(
-      eq(schedules.published, true),
-      // 会員でない場合は会員限定コンテンツを除外
-      isMember ? undefined : eq(schedules.isMemberOnly, false)
-    ),
+    where: eq(schedules.published, true),
     orderBy: [asc(schedules.sortOrder), asc(schedules.eventDate)],
   });
 };
 
 // 未来のイベントのみ取得（公開用）
-// 会員限定コンテンツは会員のみ閲覧可能
+// 会員限定コンテンツも一覧には表示（詳細ページでアクセス制御）
 export const getUpcomingSchedules = async () => {
-  const isMember = await canAccessMemberContent();
   const now = new Date();
 
   return db.query.schedules.findMany({
     where: and(
       eq(schedules.published, true),
-      gte(schedules.eventDate, now),
-      // 会員でない場合は会員限定コンテンツを除外
-      isMember ? undefined : eq(schedules.isMemberOnly, false)
+      gte(schedules.eventDate, now)
     ),
     orderBy: [asc(schedules.sortOrder), asc(schedules.eventDate)],
   });

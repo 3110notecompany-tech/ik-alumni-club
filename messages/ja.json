@@ -11,7 +11,7 @@
     "schedule": "SCHEDULE",
     "video": "VIDEO",
     "blog": "BLOG",
-    "newsletters": "NEWSLETTERS",
+    "profiles": "PROFILES",
     "contact": "CONTACT",
     "joinUs": "入会はこちら",
     "login": "ログイン",
@@ -24,6 +24,7 @@
     "blog": "BLOG",
     "newsletters": "NEWSLETTERS",
     "video": "VIDEO",
+    "profiles": "PROFILES",
     "click_here_for_details" : "詳細はこちら"
   },
   "Footer": {

@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import Image from "next/image";
 import coverImage from "./login-form-cover.jpg";
 import { authClient } from "@/lib/auth-client";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
 
@@ -17,6 +17,8 @@ export function LoginForm({
   ...props
 }: React.ComponentProps<"div">) {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const returnUrl = searchParams.get("returnUrl");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -34,7 +36,8 @@ export function LoginForm({
       });
 
       console.log("ログイン成功");
-      router.push("/mypage");
+      // returnUrlがあればそちらにリダイレクト、なければマイページへ
+      router.push(returnUrl || "/mypage");
     } catch (error) {
       console.error("ログインエラー:", error);
       setError("メールアドレスまたはパスワードが正しくありません");
