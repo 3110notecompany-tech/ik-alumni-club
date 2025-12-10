@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -28,8 +28,14 @@ export function PlanSelectionForm({ plans }: PlanSelectionFormProps) {
   });
 
   // 会員規約に同意していない場合はリダイレクト
+  useEffect(() => {
+    if (!termsAgreed) {
+      router.push("/register/terms");
+    }
+  }, [termsAgreed, router]);
+
+  // リダイレクト中は何も表示しない
   if (!termsAgreed) {
-    router.push("/register/terms");
     return null;
   }
 

@@ -3,6 +3,8 @@ import { ProfileCompleteForm } from "@/components/profile/profile-complete-form"
 import { getCurrentMember } from "@/actions/members/get-member";
 import { redirect } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+
 export default async function ProfileCompletePage({
   params,
 }: {
