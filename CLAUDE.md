@@ -4,6 +4,8 @@
 
 - 常に日本語で会話する
 
-## サーバーアクションのルール
+## Coding Standards
 
-GET 処理はサーバーアクションを加えない
+When writing code, always refer to the following coding standards:
+
+- [Coding Standards](./docs/04_coding-standards.md)
